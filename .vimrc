@@ -31,7 +31,6 @@ Bundle 'scrooloose/nerdtree'
 " ---autocomplete
 Bundle 'vim-scripts/L9'
 Bundle 'othree/vim-autocomplpop'
-Bundle 'Shougo/neocomplcache.vim'
 
 " ---snippets
 Bundle 'MarcWeber/vim-addon-mw-utils'
@@ -47,7 +46,6 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'Townk/vim-autoclose'
 Bundle 'cscope.vim'
 Bundle 'tomtom/tcomment_vim'
-" Bundle 'Lokaltog/vim-powerline'
 Bundle 'bling/vim-airline'
 Bundle 'kien/rainbow_parentheses.vim'
 Bundle 'Yggdroot/indentLine'
@@ -72,13 +70,14 @@ Bundle 'terryma/vim-multiple-cursors'
 Bundle 'chusiang/vim-sdcv'
 
 " ---theme
-Bundle 'd11wtq/tomorrow-theme-vim'
-Bundle 'tomasr/molokai'
+" Bundle 'd11wtq/tomorrow-theme-vim'
+" Bundle 'tomasr/molokai'
 Bundle 'fugalh/desert.vim'
 
 " ---plugin not installed
 "Bundle 'Lokaltog/vim-easymotion'
 "Bundle 'vimwiki'
+"Bundle 'Valloric/YouCompleteMe'
 
 
 
@@ -196,6 +195,7 @@ let g:C_InsertFileHeader = 'no'
 
 " ---vim-javascript-sng/vim-airline
 au FileType javascript call JavaScriptFold()
+
 
 " colorscheme Tomorrow-Night-Eighties
 " colorscheme molokai
