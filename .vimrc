@@ -22,10 +22,8 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 
-
 "---------------------Vundle plugin-list---------------------
 " ---file management
-Bundle 'kien/ctrlp.vim'
 Bundle 'scrooloose/nerdtree'
 
 " ---autocomplete
@@ -40,7 +38,6 @@ Bundle 'honza/vim-snippets'
 
 " ---git
 Bundle 'airblade/vim-gitgutter'
-Bundle 'tpope/vim-fugitive'
 
 " ---developement
 Bundle 'Townk/vim-autoclose'
@@ -75,9 +72,11 @@ Bundle 'chusiang/vim-sdcv'
 Bundle 'fugalh/desert.vim'
 
 " ---plugin not installed
-"Bundle 'Lokaltog/vim-easymotion'
-"Bundle 'vimwiki'
-"Bundle 'Valloric/YouCompleteMe'
+" Bundle 'Lokaltog/vim-easymotion'
+" Bundle 'vimwiki'
+" Bundle 'Valloric/YouCompleteMe'
+" Bundle 'kien/ctrlp.vim'
+" Bundle 'tpope/vim-fugitive'
 
 
 
@@ -201,6 +200,4 @@ au FileType javascript call JavaScriptFold()
 " colorscheme molokai
 colorscheme desert
 
-" --- powerLine
-" let g:Powerline_symbols = 'unicode'
 "---------------------other---------------------

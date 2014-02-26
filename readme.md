@@ -24,14 +24,11 @@ enter the command below in normal mode after you start vi
 ###File management
 - nerdtree  
     `<F2>`
-- ctrlp.vim  
-    `ctrl` `p`
 
 ###Auto Complete
 - L9  
     needed plugin for vim-autocomplete
 - vim-autocomplpop
-- neocomplcache
 
 ###snippets
 - vim-addon-mw-utils
@@ -41,7 +38,6 @@ enter the command below in normal mode after you start vi
 
 ###Git
 - vim-gitgutter
-- vim-fugitive
 
 ###developement
 - vim-autoclose  
@@ -105,6 +101,9 @@ enter the command below in normal mode after you start vi
 ###not using
 - vim-easymotion
 - vimwiki
+- vim-fugitive
+- ctrlp.vim  
+    `ctrl` `p`
 
 #Author
 [Lee-W](https://github.com/Lee-W/)

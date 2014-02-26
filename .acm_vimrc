@@ -1,0 +1,40 @@
+syntax on					"syntax highlight
+set nu                      "顯示行號
+set cursorline              "顯示目前的游標位置
+set bg=dark                 "顯示不同的底色色調
+set ruler                   "顯示最後一行的狀態
+set hlsearch                "設定高亮度顯示搜尋結果
+set confirm                 "操作過程有衝突時，以明確的文字來詢問
+set history=50              "保留 100 個使用過的指令
+set t_Co=256                " Explicitly tell Vim that the terminal supports 256 colors
+
+set autoindent				"自動縮排
+set cindent                 "設置C/C++方式自動對齊
+set smartindent             "設定 smartindent
+set shiftwidth=4			"設定縮排寬度 = 4
+set backspace=2				"可隨時用倒退鍵刪除
+set tabstop=4               "設置Tab寬度
+set softtabstop=4           "設置按退格鍵時可以一次刪除4個空格
+set smarttab                "根據檔案中其他地方的空格來判斷一個tab是多少個空格
+set expandtab               "將Tab鍵自動轉換成空格,真正需要Tab鍵時使用[Ctrl + V + Tab]
+autocmd FileType make setlocal noexpandtab
+"not to use expandtab when editing makefile
+
+
+"---------------------Encoding---------------------
+set encoding=utf-8
+set fileencodings=utf-8,cp950
+
+"---------------------Status line---------------------
+set laststatus=2   " Always show the statusline
+
+
+"---------------------folding---------------------
+"set foldenable
+"set foldmethod=syntax
+"set foldcolumn=0
+"nnoremap @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')
+"就可以使用空白鍵來折疊程式碼
+
+autocmd Filetype cpp nnoremap <F9> :!g++ % <CR>
+" compile C++ file through F9 in vim
