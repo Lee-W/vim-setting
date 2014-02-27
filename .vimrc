@@ -191,6 +191,8 @@ let g:neocomplcache_enable_at_startup = 1
 filetype plugin on
 "disable the header when creatin a C/C++ file
 let g:C_InsertFileHeader = 'no'
+let g:C_CFlags = '-g -O0 -c'
+let g:C_LFlags = '-g -O0'
 
 " ---vim-javascript-sng/vim-airline
 au FileType javascript call JavaScriptFold()
