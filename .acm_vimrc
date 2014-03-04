@@ -36,5 +36,5 @@ set laststatus=2   " Always show the statusline
 "nnoremap @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')
 "就可以使用空白鍵來折疊程式碼
 
-autocmd Filetype cpp nnoremap <F9> :!g++ % <CR>
-" compile C++ file through F9 in vim
+autocmd Filetype cpp nnoremap <F9> :w<CR> :!g++ % <CR>
+" save and compile C++ file through F9 in vim
