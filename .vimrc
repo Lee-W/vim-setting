@@ -79,8 +79,6 @@ Bundle 'fugalh/desert.vim'
 " Bundle 'tpope/vim-fugitive'
 
 
-
-
 "---------------------General setting---------------------
 syntax on					"syntax highlight
 set nu                      "顯示行號
@@ -112,7 +110,6 @@ set fileencodings=utf-8,cp950
 "---------------------Status line---------------------
 set laststatus=2   " Always show the statusline
 
-
 "---------------------folding---------------------
 "set foldenable
 "set foldmethod=syntax
@@ -129,7 +126,9 @@ nmap <F3> :call SearchWord()<CR>
 " 關閉syntax偵錯
 nmap <F8> :SyntasticToggleMode<CR>
 " 開啟tagbar
-autocmd Filetype python nnoremap <F9> :!python3 % <CR>
+autocmd Filetype python nnoremap <F9> :w<CR> :!python3 % <CR>
+autocmd Filetype cs nnoremap <F9> :w <CR> :!gmcs % -pkg:dotnet <CR>
+
 nmap <F10> :TagbarToggle<CR>
 
 " comment lines with cmd+/
@@ -196,7 +195,6 @@ let g:C_LFlags = '-g -O0'
 
 " ---vim-javascript-sng/vim-airline
 au FileType javascript call JavaScriptFold()
-
 
 " colorscheme Tomorrow-Night-Eighties
 " colorscheme molokai
