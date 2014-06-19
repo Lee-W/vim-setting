@@ -5,7 +5,7 @@ My vim plugins and settings.
 The snippets directory is for saving snippets that I add.
 
 #Installation
-1. Clone this repo and copy .vimrc to home directory
+1. Clone this repo and copy .vimrc to home directory  
         `git clone https://github.com/Lee-W/vim-setting.Git`  
         `cd vim-setting`  
         `cp .vimrc ~/`  
