@@ -78,7 +78,6 @@ Bundle 'fugalh/desert.vim'
 " Bundle 'kien/ctrlp.vim'
 " Bundle 'tpope/vim-fugitive'
 
-
 "---------------------General setting---------------------
 syntax on					"syntax highlight
 set nu                      "顯示行號
