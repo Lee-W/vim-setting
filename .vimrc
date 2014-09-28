@@ -53,14 +53,16 @@ Bundle 'michaeljsmith/vim-indent-object'
 " ---syntax highlight and detection
 Bundle 'Lee-W/c.vim'
 Bundle 'vim-jp/cpp-vim'
-Bundle 'hdima/python-syntax'
 Bundle 'plasticboy/vim-markdown'
 Bundle 'othree/html5.vim'
 Bundle 'hail2u/vim-css3-syntax'
 Bundle 'othree/vim-javascript-syntax'
 Bundle 'scrooloose/syntastic'
-Bundle 'kevinw/pyflakes'
-Bundle 'pythoncomplete'
+Bundle 'klen/python-mode'
+Bundle 'lambdalisue/vim-django-support'
+" Bundle 'hdima/python-syntax'
+" Bundle 'pythoncomplete'
+" Bundle 'kevinw/pyflakes'
 
 " ---tool
 Bundle 'terryma/vim-multiple-cursors'
@@ -195,6 +197,14 @@ let g:C_LFlags = '-g -O0'
 " ---vim-javascript-sng/vim-airline
 au FileType javascript call JavaScriptFold()
 
+" ---python-mode
+" let g:pymode_python = 'python3'   //unable to use since my vim doesn't support python 3
+let g:pymode_motion = 1
+let g:pymode_options_max_line_length = 0
+let g:pymode_rope = 0
+
+
+" ---theme
 " colorscheme Tomorrow-Night-Eighties
 " colorscheme molokai
 colorscheme desert
