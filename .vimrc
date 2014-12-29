@@ -201,7 +201,7 @@ au FileType javascript call JavaScriptFold()
 
 let g:pymode_python = 'python3'
 let g:pymode_motion = 1
-let g:pymode_options_max_line_length = 0
+let g:pymode_options_max_line_length = 80 
 let g:pymode_rope = 0
 
 
