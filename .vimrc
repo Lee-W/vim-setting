@@ -51,20 +51,19 @@ Bundle 'majutsushi/tagbar'
 Bundle 'michaeljsmith/vim-indent-object'
 
 " ---syntax highlight and detection
+Bundle 'scrooloose/syntastic'
 Bundle 'Lee-W/c.vim'
 Bundle 'vim-jp/cpp-vim'
+Bundle 'lervag/vim-latex'
 Bundle 'plasticboy/vim-markdown'
 Bundle 'othree/html5.vim'
 Bundle 'hail2u/vim-css3-syntax'
 Bundle 'othree/vim-javascript-syntax'
-Bundle 'scrooloose/syntastic'
 Bundle 'klen/python-mode'
 Bundle 'lambdalisue/vim-django-support'
-" Bundle 'hdima/python-syntax'
-" Bundle 'pythoncomplete'
-" Bundle 'kevinw/pyflakes'
 
-" ---tool
+" ---utility
+Bundle 'Lokaltog/vim-easymotion'
 Bundle 'terryma/vim-multiple-cursors'
 Bundle 'chusiang/vim-sdcv'
 
@@ -74,7 +73,6 @@ Bundle 'chusiang/vim-sdcv'
 Bundle 'fugalh/desert.vim'
 
 " ---plugin not installed
-" Bundle 'Lokaltog/vim-easymotion'
 " Bundle 'vimwiki'
 " Bundle 'Valloric/YouCompleteMe'
 " Bundle 'kien/ctrlp.vim'
@@ -201,9 +199,11 @@ au FileType javascript call JavaScriptFold()
 
 let g:pymode_python = 'python3'
 let g:pymode_motion = 1
-let g:pymode_options_max_line_length = 80 
+let g:pymode_options_max_line_length = 80
 let g:pymode_rope = 0
 
+" ---easymotion
+let g:EasyMotion_leader_key = 'f'
 
 " ---theme
 " colorscheme Tomorrow-Night-Eighties
