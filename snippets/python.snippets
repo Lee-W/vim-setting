@@ -128,9 +128,19 @@ snippet pdb
 # ipython debugger (ipdb)
 snippet ipdb
 	import ipdb; ipdb.set_trace()
+# embed ipython itself
+snippet iem
+	import IPython; IPython.embed()
 # ipython debugger (pdbbb)
 snippet pdbbb
 	import pdbpp; pdbpp.set_trace()
+# remote python debugger (rpdb)
+snippet rpdb
+	import rpdb; rpdb.set_trace()
+# python_prompt_toolkit
+snippet ppt
+	from prompt_toolkit.contrib.repl import embed
+	embed(globals(), locals(), vi_mode=${1:default=False}, history_filename=${2:default=None})
 # python console debugger (pudb)
 snippet pudb
 	import pudb; pudb.set_trace()
@@ -200,7 +210,51 @@ snippet epydoc
 
 	@raise e: ${0: Description}
 	"""
+snippet dol
+	def ${1:__init__}(self, *args, **kwargs):
+	    super(${0:ClassName}, self).$1(*args, **kwargs)
+snippet kwg
+	self.${1:var_name} = kwargs.get('$1', ${2:None})
+snippet lkwg
+	${1:var_name} = kwargs.get('$1', ${2:None})
+snippet args
+	*args${1:,}${0}
+snippet kwargs
+	**kwargs${1:,}${0}
+snippet akw
+	*args, **kwargs${1:,}${0}
 
-# costomer define
-snippet http200
-	return HttpResponse(status=200)
+
+
+# custom snippet
+snippet setup
+	import sys
+	from cx_Freeze import setup, Executable
+
+	main_python_file = "${1:file}"
+	application_title = "${2:title}"
+	application_description = "${3:description}"
+
+	includes = []
+	excludes = []
+	packages = []
+	include_files = []
+	build_exe_options = {"includes": includes,
+		¦   ¦   ¦   ¦   ¦"excludes": excludes,
+		¦   ¦   ¦   ¦   ¦"packages": packages,
+		¦   ¦   ¦   ¦   ¦"include_files": include_files}
+
+	base = None
+	if sys.platform == "win32":
+		base = "Win32GUI"
+
+	setup(name=application_title,
+		¦ version="${4:1.0}",
+		¦ description=application_description,
+		¦ author="LeeW",
+		¦ author_email="cl87654321@gmail.com",
+		¦ url="https://github.com/Lee-W/${5:repo}",
+		¦ options={"build_exe":  build_exe_options},
+		¦ executables=[Executable(main_python_file, base=base)]
+		¦ )
+	~

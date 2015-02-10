@@ -192,14 +192,10 @@ let g:C_InsertFileHeader = 'no'
 let g:C_CFlags = '-g -O0 -c'
 let g:C_LFlags = '-g -O0'
 
-" ---vim-javascript-sng/vim-airline
-au FileType javascript call JavaScriptFold()
-
 " ---python-mode
-
 let g:pymode_python = 'python3'
 let g:pymode_motion = 1
-let g:pymode_options_max_line_length = 80
+let g:pymode_options_max_line_length = 100 
 let g:pymode_rope = 0
 
 " ---easymotion
