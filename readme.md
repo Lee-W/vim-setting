@@ -2,7 +2,7 @@
 
 #Description
 My vim plugins and settings.
-The snippets directory is for saving snippets that I add.
+The snippets directory is for my custom snippets
 
 #Installation
 1. Clone this repo and copy .vimrc to home directory
@@ -60,14 +60,21 @@ enter the command below in normal mode after you start vi
     `v` `a` `i` : 選取同indent內的文字,同時包含上一級  
 
 ###syntax
+- syntastic  
+    automatically check syntax error
+- python-mode  
+    整合各種python套件
+- vim-django-support
 - c.vim
     加強C/C++的各種功能  
     在github上沒有最新版,目前是下載vim.org的最新版\(version 6.1\) 放在我的github上，必須手動更新  
     `<F9>` : compile  
 - cpp-vim  
     strengthen c++ syntax highlight
-- python-syntax  
-    strengthen python syntax highlight
+- javacomplete  
+    增加java自動補完
+- vim-latex  
+    latex syntax highlight
 - vim-markdown  
     markdown syntax highlight
 - html5.vim  
@@ -76,21 +83,20 @@ enter the command below in normal mode after you start vi
     css 3 syntax highlight
 - vim-javascript-syntax  
     javascript syntax highlight
-- syntastic  
-    automatically check syntax error
-- pyflakes  
-    strengthen python sytax checking
-- pythoncomplete  
-    strengthen python auto completion
-    it might support only python 2 since the last update time for this repo is 2011
+- emmet-vim  
+    zen coding
 
 ###tool
+- vim-easymotion  
+    快速搜尋文字並移動
 - vim-multiple-cursors  
     如同sublime支援多重游標
     主要用法是在normal mode按ctrl + n ，再選取，最後再按一次ctrl + n
 - vim-sdcv  
     use sdcv to search vocabulary
     `<F3>` : search
+- vimspell  
+    spell checking
 
 ###theme
 - tomorrow-theme-vim  
