@@ -52,20 +52,23 @@ Bundle 'michaeljsmith/vim-indent-object'
 
 " ---syntax highlight and detection
 Bundle 'scrooloose/syntastic'
+Bundle 'klen/python-mode'
+Bundle 'lambdalisue/vim-django-support'
 Bundle 'Lee-W/c.vim'
 Bundle 'vim-jp/cpp-vim'
+Bundle 'adragomir/javacomplete'
 Bundle 'lervag/vim-latex'
 Bundle 'plasticboy/vim-markdown'
 Bundle 'othree/html5.vim'
 Bundle 'hail2u/vim-css3-syntax'
 Bundle 'othree/vim-javascript-syntax'
-Bundle 'klen/python-mode'
-Bundle 'lambdalisue/vim-django-support'
+Bundle 'mattn/emmet-vim'
 
 " ---utility
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'terryma/vim-multiple-cursors'
 Bundle 'chusiang/vim-sdcv'
+Bundle 'vimspell'
 
 " ---theme
 " Bundle 'd11wtq/tomorrow-theme-vim'
@@ -86,8 +89,8 @@ set bg=dark                 "顯示不同的底色色調
 set ruler                   "顯示最後一行的狀態
 set hlsearch                "設定高亮度顯示搜尋結果
 set confirm                 "操作過程有衝突時，以明確的文字來詢問
-set history=50              "保留 100 個使用過的指令
-set t_Co=256                " Explicitly tell Vim that the terminal supports 256 colors
+set history=50              "保留 50 個使用過的指令
+set t_Co=256                "Explicitly tell Vim that the terminal supports 256 colors
 
 set autoindent				"自動縮排
 set cindent                 "設置C/C++方式自動對齊
@@ -98,8 +101,10 @@ set tabstop=4               "設置Tab寬度
 set softtabstop=4           "設置按退格鍵時可以一次刪除4個空格
 set smarttab                "根據檔案中其他地方的空格來判斷一個tab是多少個空格
 set expandtab               "將Tab鍵自動轉換成空格,真正需要Tab鍵時使用[Ctrl + V + Tab]
+set incsearch               "搜尋時立即跳到符合的pattern
+
 autocmd FileType make setlocal noexpandtab
-"not to use expandtab when editing makefile
+"disable expandtab when editing makefile
 
 
 "---------------------Encoding---------------------
@@ -120,19 +125,26 @@ set laststatus=2   " Always show the statusline
 "---------------------key binding---------------------
 " 開始NERDTree
 nmap <F2> :NERDTreeToggle<CR>
-" 在單字上按下F2就能開啟sdcv查詢
+
+" 在單字上按下F3就能開啟sdcv查詢
 nmap <F3> :call SearchWord()<CR>
+
+" 開啟spell checking
+nmap <F7> :setlocal spell!<cr>
+
 " 關閉syntax偵錯
 nmap <F8> :SyntasticToggleMode<CR>
+
 " 開啟tagbar
 autocmd Filetype python nnoremap <F9> :w<CR> :!python3 % <CR>
 autocmd Filetype cs nnoremap <F9> :w <CR> :!gmcs % -pkg:dotnet <CR>
 
 nmap <F10> :TagbarToggle<CR>
 
-" comment lines with cmd+/
+" comment lines
 map ` :TComment<cr>
 vmap ` :TComment<cr>gv
+
 
 
 "---------------------plug-in setting---------------------
@@ -143,7 +155,7 @@ highlight clear SignColumn " For the same appearance as your line number column 
 " ---Stntastic
 let g:syntastic_check_on_open = 0
 let g:syntastic_python_python_exe = 'python3'
-let g:syntastic_python_checkers=['flake8', 'py3kwarn']
+let g:syntastic_python_checkers=['flake8', 'py3kwarn', 'pep8']
 
 " ---python-syntax
 let python_highlight_all = 1
@@ -195,16 +207,28 @@ let g:C_LFlags = '-g -O0'
 " ---python-mode
 let g:pymode_python = 'python3'
 let g:pymode_motion = 1
-let g:pymode_options_max_line_length = 100 
+let g:pymode_options_max_line_length = 100
 let g:pymode_rope = 0
 
 " ---easymotion
 let g:EasyMotion_leader_key = 'f'
 
+" ---vim-spell
+set spelllang=en
+
+" ---emmet-vim
+autocmd filetype html,css EmmetInstall
+let g:user_emmet_install_global = 0
+
+
+" ---javacomplete
+autocmd FileType java set omnifunc=javacomplete#Complete
+autocmd FileType java set completefunc=javacomplete#CompleteParamsInfo
+
 " ---theme
+colorscheme desert
 " colorscheme Tomorrow-Night-Eighties
 " colorscheme molokai
-colorscheme desert
 
 "---------------------other---------------------
 " ---set paste
@@ -221,3 +245,17 @@ if &term =~ "xterm.*"
     cmap <Esc>[200~ <nop>
     cmap <Esc>[201~ <nop>
 endif
+
+" ---回到上次編輯的地方
+if has("autocmd")
+    autocmd BufRead *.txt set tw=78
+    autocmd BufReadPost *
+                \ if line("'\"") > 0 && line ("'\"") <= line("$") |
+                \   exe "normal g'\"" |
+                \ endif
+endif
+
+" ---開啟滑鼠
+" if has('mouse')
+"     set mouse=a
+" endif
