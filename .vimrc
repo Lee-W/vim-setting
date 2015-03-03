@@ -136,9 +136,6 @@ nmap <F7> :setlocal spell!<cr>
 nmap <F8> :SyntasticToggleMode<CR>
 
 " 開啟tagbar
-autocmd Filetype python nnoremap <F9> :w<CR> :!python3 % <CR>
-autocmd Filetype cs nnoremap <F9> :w <CR> :!gmcs % -pkg:dotnet <CR>
-
 nmap <F10> :TagbarToggle<CR>
 
 " comment lines
@@ -215,6 +212,8 @@ let g:EasyMotion_leader_key = 'f'
 
 " ---vim-spell
 set spelllang=en
+let spell_auto_type = "txt"
+autocmd BufRead *.txt,*.md,*.tex setlocal spell
 
 " ---emmet-vim
 autocmd filetype html,css EmmetInstall
