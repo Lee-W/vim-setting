@@ -109,7 +109,7 @@ autocmd FileType make setlocal noexpandtab
 
 "---------------------Encoding---------------------
 set encoding=utf-8
-set fileencodings=utf-8,cp950
+set fileencodings=utf-8,cp950,big5
 
 "---------------------Status line---------------------
 set laststatus=2   " Always show the statusline
@@ -253,6 +253,9 @@ if has("autocmd")
                 \   exe "normal g'\"" |
                 \ endif
 endif
+
+" git commit
+autocmd Filetype gitcommit setlocal spell textwidth=72
 
 " ---開啟滑鼠
 " if has('mouse')
