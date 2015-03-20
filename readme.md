@@ -6,7 +6,7 @@ The snippets directory is for my custom snippets
 
 #Installation
 1. Clone this repo and copy .vimrc to home directory
-        `git clone https://github.com/Lee-W/vim-setting.Git`  
+        `git clone https://github.com/Lee-W/vim-setting.git`  
         `cd vim-setting`  
         `cp .vimrc ~/`  
 2. Start vi and it will automatically install `vundle` (a package management plugin for vim)  
