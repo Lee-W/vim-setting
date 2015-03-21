@@ -60,6 +60,7 @@ Bundle 'lambdalisue/vim-django-support'
 Bundle 'Lee-W/c.vim'
 Bundle 'vim-jp/cpp-vim'
 Bundle 'octol/vim-cpp-enhanced-highlight'
+Bundle 'initrc/eclim-vundle'
 "  Web
 Bundle 'othree/html5.vim'
 Bundle 'hail2u/vim-css3-syntax'
@@ -207,11 +208,12 @@ let g:C_LFlags = '-g -O0'
 
 " ---python-mode
 let g:pymode_python = 'python3'
+let g:pymode_indent = 1
 let g:pymode_motion = 1
 let g:pymode_options_max_line_length = 100
 let g:pymode_rope_completion = 1
 let g:pymode_rope_complete_on_dot = 1
-let g:pymode_rope_autoimport = 1
+let g:pymode_rope_rename_bind = '<C-c>rr'
 au CompleteDone * pclose
 
 " ---easymotion
@@ -225,11 +227,6 @@ autocmd BufRead *.txt,*.md,*.tex setlocal spell
 " ---emmet-vim
 autocmd filetype html,css EmmetInstall
 let g:user_emmet_install_global = 0
-
-
-" ---javacomplete
-autocmd FileType java set omnifunc=javacomplete#Complete
-autocmd FileType java set completefunc=javacomplete#CompleteParamsInfo
 
 " ---theme
 colorscheme desert
