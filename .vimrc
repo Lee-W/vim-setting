@@ -154,19 +154,16 @@ vmap ` :TComment<cr>gv
 let g:gitgutter_enabled = 1
 highlight clear SignColumn " For the same appearance as your line number column "
 
-" ---Stntastic
+" ---Syntastic
 let g:syntastic_check_on_open = 0
 let g:syntastic_python_python_exe = 'python3'
 let g:syntastic_python_checkers=['flake8', 'py3kwarn', 'pep8']
 let g:syntastic_cpp_compiler = 'clang++'
 let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
 
-" ---python-syntax
-let python_highlight_all = 1
-
 " --- ctrlp
-let g:ctrlp_dont_split = 'NERD_tree_2'
-let g:ctrlp_show_hidden = 1
+" let g:ctrlp_dont_split = 'NERD_tree_2'
+" let g:ctrlp_show_hidden = 1
 
 " --- vim-markdown
 let g:vim_markdown_folding_disabled=1       "disable folding
@@ -212,7 +209,10 @@ let g:C_LFlags = '-g -O0'
 let g:pymode_python = 'python3'
 let g:pymode_motion = 1
 let g:pymode_options_max_line_length = 100
-let g:pymode_rope = 0
+let g:pymode_rope_completion = 1
+let g:pymode_rope_complete_on_dot = 1
+let g:pymode_rope_autoimport = 1
+au CompleteDone * pclose
 
 " ---easymotion
 let g:EasyMotion_leader_key = 'f'
