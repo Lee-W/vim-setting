@@ -26,15 +26,13 @@ Bundle 'gmarik/vundle'
 " ---file management
 Bundle 'scrooloose/nerdtree'
 
-
-
 " ---autocomplete
 Bundle 'vim-scripts/L9'
 Bundle 'othree/vim-autocomplpop'
 
 " ---snippets
 Bundle 'MarcWeber/vim-addon-mw-utils'
-" Bundle 'tomtom/tlib_vim'
+Bundle 'tomtom/tlib_vim'
 Bundle 'garbas/vim-snipmate'
 Bundle 'honza/vim-snippets'
 
@@ -53,19 +51,23 @@ Bundle 'majutsushi/tagbar'
 Bundle 'michaeljsmith/vim-indent-object'
 
 " ---syntax highlight and detection
+"  overall
 Bundle 'scrooloose/syntastic'
+"  python
 Bundle 'klen/python-mode'
 Bundle 'lambdalisue/vim-django-support'
+"  C/C++
 Bundle 'Lee-W/c.vim'
 Bundle 'vim-jp/cpp-vim'
 Bundle 'octol/vim-cpp-enhanced-highlight'
-Bundle 'adragomir/javacomplete'
-Bundle 'lervag/vim-latex'
-Bundle 'plasticboy/vim-markdown'
+"  Web
 Bundle 'othree/html5.vim'
 Bundle 'hail2u/vim-css3-syntax'
 Bundle 'othree/vim-javascript-syntax'
 Bundle 'mattn/emmet-vim'
+"  Document
+Bundle 'plasticboy/vim-markdown'
+" Bundle 'lervag/vim-latex'
 
 " ---utility
 Bundle 'Lokaltog/vim-easymotion'
@@ -74,9 +76,9 @@ Bundle 'chusiang/vim-sdcv'
 Bundle 'vimspell'
 
 " ---theme
+Bundle 'fugalh/desert.vim'
 " Bundle 'd11wtq/tomorrow-theme-vim'
 " Bundle 'tomasr/molokai'
-Bundle 'fugalh/desert.vim'
 
 " ---plugin not installed
 " Bundle 'vimwiki'
