@@ -26,13 +26,15 @@ Bundle 'gmarik/vundle'
 " ---file management
 Bundle 'scrooloose/nerdtree'
 
+
+
 " ---autocomplete
 Bundle 'vim-scripts/L9'
 Bundle 'othree/vim-autocomplpop'
 
 " ---snippets
 Bundle 'MarcWeber/vim-addon-mw-utils'
-Bundle 'tomtom/tlib_vim'
+" Bundle 'tomtom/tlib_vim'
 Bundle 'garbas/vim-snipmate'
 Bundle 'honza/vim-snippets'
 
@@ -56,6 +58,7 @@ Bundle 'klen/python-mode'
 Bundle 'lambdalisue/vim-django-support'
 Bundle 'Lee-W/c.vim'
 Bundle 'vim-jp/cpp-vim'
+Bundle 'octol/vim-cpp-enhanced-highlight'
 Bundle 'adragomir/javacomplete'
 Bundle 'lervag/vim-latex'
 Bundle 'plasticboy/vim-markdown'
@@ -153,6 +156,8 @@ highlight clear SignColumn " For the same appearance as your line number column 
 let g:syntastic_check_on_open = 0
 let g:syntastic_python_python_exe = 'python3'
 let g:syntastic_python_checkers=['flake8', 'py3kwarn', 'pep8']
+let g:syntastic_cpp_compiler = 'clang++'
+let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
 
 " ---python-syntax
 let python_highlight_all = 1
