@@ -56,6 +56,7 @@ Bundle 'scrooloose/syntastic'
 "  python
 Bundle 'klen/python-mode'
 Bundle 'lambdalisue/vim-django-support'
+Bundle 'davidhalter/jedi-vim'
 "  C/C++
 Bundle 'Lee-W/c.vim'
 Bundle 'vim-jp/cpp-vim'
@@ -211,10 +212,16 @@ let g:pymode_python = 'python3'
 let g:pymode_indent = 1
 let g:pymode_motion = 1
 let g:pymode_options_max_line_length = 100
-let g:pymode_rope_completion = 1
-let g:pymode_rope_complete_on_dot = 1
-let g:pymode_rope_rename_bind = '<C-c>rr'
 au CompleteDone * pclose
+
+" ---jedi-vim
+" let g:jedi#goto_assignments_command = "<leader>g"
+" let g:jedi#goto_definitions_command = "<leader>d"
+" let g:jedi#documentation_command = "K"
+" let g:jedi#usages_command = "<leader>n"
+" let g:jedi#completions_command = "<C-Space>"
+" let g:jedi#rename_command = "<leader>r"
+" autocmd FileType python setlocal completeopt-=preview
 
 " ---easymotion
 let g:EasyMotion_leader_key = 'f'
