@@ -233,7 +233,7 @@ autocmd BufRead *.txt,*.md,*.tex setlocal spell
 
 " ---emmet-vim
 autocmd filetype html,css EmmetInstall
-let g:user_emmet_install_global = 0
+" let g:user_emmet_install_global = 0
 
 " ---theme
 colorscheme desert
