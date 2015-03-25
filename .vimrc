@@ -61,6 +61,7 @@ Bundle 'davidhalter/jedi-vim'
 Bundle 'Lee-W/c.vim'
 Bundle 'vim-jp/cpp-vim'
 Bundle 'octol/vim-cpp-enhanced-highlight'
+"  Java
 Bundle 'initrc/eclim-vundle'
 "  Web
 Bundle 'othree/html5.vim'
