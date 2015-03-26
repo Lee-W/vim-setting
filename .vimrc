@@ -62,7 +62,7 @@ Bundle 'Lee-W/c.vim'
 Bundle 'vim-jp/cpp-vim'
 Bundle 'octol/vim-cpp-enhanced-highlight'
 "  Java
-Bundle 'initrc/eclim-vundle'
+Bundle 'adragomir/javacomplete'
 "  Web
 Bundle 'othree/html5.vim'
 Bundle 'hail2u/vim-css3-syntax'
@@ -158,15 +158,18 @@ let g:gitgutter_enabled = 1
 highlight clear SignColumn " For the same appearance as your line number column "
 
 " ---Syntastic
-let g:syntastic_check_on_open = 0
 let g:syntastic_python_python_exe = 'python3'
 let g:syntastic_python_checkers=['flake8', 'py3kwarn', 'pep8']
 let g:syntastic_cpp_compiler = 'clang++'
 let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
 
-" --- ctrlp
-" let g:ctrlp_dont_split = 'NERD_tree_2'
-" let g:ctrlp_show_hidden = 1
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 
 " --- vim-markdown
 let g:vim_markdown_folding_disabled=1       "disable folding
@@ -197,6 +200,10 @@ au VimEnter * RainbowParenthesesToggle
 au Syntax * RainbowParenthesesLoadBraces
 au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
+
+" --- javacomplete
+autocmd Filetype java setlocal omnifunc=javacomplete#Complete
+autocmd Filetype java map <leader>b :call javacomplete#GoToDefinition()<CR>
 
 " ---neocomplcache
 let g:neocomplcache_enable_at_startup = 1
