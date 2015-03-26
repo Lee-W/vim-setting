@@ -24,12 +24,12 @@ Enter the command `:BundleInstall` in normal mode after you start vi
 
 # What is in this vimrc? (Plug-in List)
 ### File management
-- nerdtree  
-    `<F2>`
+- NERDTree  
+    `<F2>`: Toogle NERDTree
 
 ### Auto Complete
 - L9  
-    dependency  for vim-autocomplete
+    dependency for vim-autocomplete
 - vim-autocomplpop
 
 ### Snippets
@@ -78,8 +78,8 @@ Enter the command `:BundleInstall` in normal mode after you start vi
 - cpp-vim  
     strengthen c++ syntax highlight
 - vim-cpp-enhanced-highlight
-- eclim-vundle  
-    integrate eclipse with vim
+- javacomplete  
+    omnicomplete for java
 - html5.vim  
     html5 syntax highlight
 - vim-css3-syntax  
