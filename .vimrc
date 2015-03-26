@@ -213,14 +213,17 @@ let g:pymode_python = 'python3'
 let g:pymode_indent = 1
 let g:pymode_motion = 1
 let g:pymode_options_max_line_length = 100
-au CompleteDone * pclose
+" au CompleteDone * pclose
 
 " ---jedi-vim
+let g:jedi#popup_on_dot = 1
+let g:jedi#popup_select_first = 0
+let g:jedi#force_py_version = 3
+let g:jedi#completions_command = "<leader>a"
 " let g:jedi#goto_assignments_command = "<leader>g"
 " let g:jedi#goto_definitions_command = "<leader>d"
 " let g:jedi#documentation_command = "K"
 " let g:jedi#usages_command = "<leader>n"
-" let g:jedi#completions_command = "<C-Space>"
 " let g:jedi#rename_command = "<leader>r"
 " autocmd FileType python setlocal completeopt-=preview
 
