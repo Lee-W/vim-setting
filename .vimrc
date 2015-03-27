@@ -23,6 +23,12 @@ Bundle 'gmarik/vundle'
 
 
 "---------------------Vundle plugin-list---------------------
+" ---utility
+Bundle 'Lokaltog/vim-easymotion'
+Bundle 'terryma/vim-multiple-cursors'
+Bundle 'chusiang/vim-sdcv'
+Bundle 'vimspell'
+
 " ---file management
 Bundle 'scrooloose/nerdtree'
 
@@ -70,13 +76,6 @@ Bundle 'othree/vim-javascript-syntax'
 Bundle 'mattn/emmet-vim'
 "  Document
 Bundle 'plasticboy/vim-markdown'
-" Bundle 'lervag/vim-latex'
-
-" ---utility
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'terryma/vim-multiple-cursors'
-Bundle 'chusiang/vim-sdcv'
-Bundle 'vimspell'
 
 " ---theme
 Bundle 'fugalh/desert.vim'
@@ -85,9 +84,9 @@ Bundle 'fugalh/desert.vim'
 
 " ---plugin not installed
 " Bundle 'vimwiki'
-" Bundle 'Valloric/YouCompleteMe'
 " Bundle 'kien/ctrlp.vim'
 " Bundle 'tpope/vim-fugitive'
+" Bundle 'lervag/vim-latex'
 
 "---------------------General setting---------------------
 syntax on					"syntax highlight
@@ -156,6 +155,10 @@ vmap ` :TComment<cr>gv
 " --- vim-gitgutter
 let g:gitgutter_enabled = 1
 highlight clear SignColumn " For the same appearance as your line number column "
+
+" ---vim-spell
+set spelllang=en
+autocmd BufRead *.txt,*.md,*.tex setlocal spell
 
 " ---Syntastic
 let g:syntastic_python_python_exe = 'python3'
@@ -237,14 +240,10 @@ let g:jedi#completions_command = "<leader>a"
 " ---easymotion
 let g:EasyMotion_leader_key = 'f'
 
-" ---vim-spell
-set spelllang=en
-let spell_auto_type = "txt"
-autocmd BufRead *.txt,*.md,*.tex setlocal spell
-
 " ---emmet-vim
 autocmd filetype html,css EmmetInstall
 " let g:user_emmet_install_global = 0
+
 
 " ---theme
 colorscheme desert
