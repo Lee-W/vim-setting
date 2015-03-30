@@ -61,7 +61,6 @@ Bundle 'michaeljsmith/vim-indent-object'
 Bundle 'scrooloose/syntastic'
 "  python
 Bundle 'klen/python-mode'
-Bundle 'lambdalisue/vim-django-support'
 Bundle 'davidhalter/jedi-vim'
 "  C/C++
 Bundle 'Lee-W/c.vim'
