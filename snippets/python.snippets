@@ -235,29 +235,94 @@ snippet setup
 	application_title = "${2:title}"
 	application_description = "${3:description}"
 
-	includes = []
+	includes = [${4:includes}]
 	excludes = []
 	packages = []
 	include_files = []
 	build_exe_options = {"includes": includes,
-		¦   ¦   ¦   ¦   ¦"excludes": excludes,
-		¦   ¦   ¦   ¦   ¦"packages": packages,
-		¦   ¦   ¦   ¦   ¦"include_files": include_files}
+		                 "excludes": excludes,
+		                 "packages": packages,
+		                 "include_files": include_files}
 
 	base = None
 	if sys.platform == "win32":
 		base = "Win32GUI"
 
 	setup(name=application_title,
-		¦ version="${4:1.0}",
-		¦ description=application_description,
-		¦ author="LeeW",
-		¦ author_email="cl87654321@gmail.com",
-		¦ url="https://github.com/Lee-W/${5:repo}",
-		¦ options={"build_exe":  build_exe_options},
-		¦ executables=[Executable(main_python_file, base=base)]
-		¦ )
-snippet reqheader
-	header = {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-			  'X-Requested-With': 'XMLHttpRequest'}
+		  version="${5:1.0}",
+		  description=application_description,
+		  author="LeeW",
+		  author_email="cl87654321@gmail.com",
+		  url="https://github.com/Lee-W/${6:repo}",
+		  options={"build_exe":  build_exe_options},
+		  executables=[Executable(main_python_file, base=base)]
+		  )
 
+snippet setupexe
+	import py2exe
+	from distutils.core import setup
+
+	main_python_file = "${1:file}"
+	application_title = "${2:title}"
+	application_description = "${3:description}"
+
+	includes = [${4:includes}]
+	excludes = []
+	packages = []
+	include_files = []
+	build_exe_options = {"includes": includes,
+						 "excludes": excludes,
+						 "packages": packages,
+						 "include_files": include_files}
+	base = None
+	if sys.platform == "win32":
+		base = "Win32GUI"
+
+	setup(name=application_title,
+		  version="${5:1.0}",
+		  description=application_description,
+		  author="LeeW",
+		  author_email="cl87654321@gmail.com",
+		  url="https://github.com/Lee-W/${6:repo}",
+		  windows=[main_python_file],
+		  options={"py2exe": {
+					  "includes": includes
+				  }
+		  }
+	)
+
+snippet setupapp
+	from setuptools import setup
+
+	main_python_file = "${1:file}"
+	application_title = "${2:title}"
+	application_description = "${3:description}"
+
+	includes = [${4:includes}]
+	excludes = []
+	packages = []
+	include_files = []
+	build_exe_options = {"includes": includes,
+						 "excludes": excludes,
+						 "packages": packages,
+						 "include_files": include_files}
+
+	setup(app=[main_python_file],
+		  setup_requires=["py2app"],
+		  name=application_title,
+		  version="${5:1.0}",
+		  description=application_description,
+		  author="LeeW",
+		  author_email="cl87654321@gmail.com",
+		  url="https://github.com/Lee-W/${6:repo},
+		  options={"build_exe":  build_exe_options},
+		  )
+
+snippet reqheader
+	header = {
+		'User-Agent': ("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2)"
+					   "AppleWebKit/537.36 (KHTML, like Gecko)"
+					   "Chrome/41.0.2272.104 Safari/537.36"),
+		'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+		'X-Requested-With': 'XMLHttpRequest'
+	}
