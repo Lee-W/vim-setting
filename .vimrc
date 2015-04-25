@@ -55,6 +55,7 @@ Bundle 'Yggdroot/indentLine'
 Bundle 'bronson/vim-trailing-whitespace'
 Bundle 'majutsushi/tagbar'
 Bundle 'michaeljsmith/vim-indent-object'
+Plugin 'rizzatti/dash.vim'
 
 " ---syntax highlight and detection
 "  overall
@@ -75,6 +76,7 @@ Bundle 'othree/vim-javascript-syntax'
 Bundle 'mattn/emmet-vim'
 "  Document
 Bundle 'plasticboy/vim-markdown'
+
 
 " ---theme
 Bundle 'fugalh/desert.vim'
@@ -121,10 +123,10 @@ set fileencodings=utf-8,cp950,big5
 set laststatus=2   " Always show the statusline
 
 "---------------------folding---------------------
-"set foldenable
-"set foldmethod=syntax
-"set foldcolumn=0
-"nnoremap @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')
+" set foldenable
+" set foldmethod=syntax
+" set foldcolumn=0
+" nnoremap @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')
 "就可以使用空白鍵來折疊程式碼
 
 
@@ -160,8 +162,12 @@ set spelllang=en
 autocmd BufRead *.txt,*.md,*.tex setlocal spell
 
 " ---Syntastic
-let g:syntastic_python_python_exe = 'python3'
-let g:syntastic_python_checkers=['flake8', 'py3kwarn', 'pep8']
+let g:syntastic_mode_map = {
+    \ "mode": "active",
+    \ "active_filetypes": [],
+    \ "passive_filetypes": ["python"] }
+" let g:syntastic_python_python_exe = 'python3'
+" let g:syntastic_python_checkers=['flake8', 'py3kwarn', 'pep8']
 let g:syntastic_cpp_compiler = 'clang++'
 let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
 set statusline+=%#warningmsg#
@@ -223,6 +229,7 @@ let g:pymode_indent = 1
 let g:pymode_motion = 1
 let g:pymode_options_max_line_length = 100
 let g:pymode_rope = 0
+let g:pymode_lint_checkers = ['pyflakes', 'pep8', 'pylint']
 " au CompleteDone * pclose
 
 " ---jedi-vim
