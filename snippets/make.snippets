@@ -11,3 +11,8 @@ snippet cpp
 snippet ctarget
 	${1:target} : ${2:file}
 		${3:$(CPP)} -o $@ $<
+
+snippet clean
+	.PHONY: clean
+	clean:
+		rm -rf *.o
