@@ -55,6 +55,7 @@ Bundle 'Yggdroot/indentLine'
 Bundle 'bronson/vim-trailing-whitespace'
 Bundle 'majutsushi/tagbar'
 Bundle 'michaeljsmith/vim-indent-object'
+Plugin 'rizzatti/dash.vim'
 
 " ---syntax highlight and detection
 "  overall
@@ -75,6 +76,7 @@ Bundle 'othree/vim-javascript-syntax'
 Bundle 'mattn/emmet-vim'
 "  Document
 Bundle 'plasticboy/vim-markdown'
+
 
 " ---theme
 Bundle 'fugalh/desert.vim'
@@ -121,10 +123,10 @@ set fileencodings=utf-8,cp950,big5
 set laststatus=2   " Always show the statusline
 
 "---------------------folding---------------------
-"set foldenable
-"set foldmethod=syntax
-"set foldcolumn=0
-"nnoremap @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')
+" set foldenable
+" set foldmethod=syntax
+" set foldcolumn=0
+" nnoremap @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')
 "就可以使用空白鍵來折疊程式碼
 
 
