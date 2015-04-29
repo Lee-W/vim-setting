@@ -2,15 +2,20 @@ snippet ifeq
 	ifeq (${1:cond0},${2:cond1})
 		${0}
 	endif
+
 snippet target
 	${1:target} : ${2:file}
 		${3:command}
 
 snippet cpp
 	CPP = g++
+
+snippet c++11
+	FLAG = -std=c++11
+
 snippet ctarget
 	${1:target} : ${2:file}
-		${3:$(CPP)} -o $@ $<
+		${3:$(CPP)} -o $@.out $<
 
 snippet clean
 	.PHONY: clean
