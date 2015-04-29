@@ -5,89 +5,89 @@ filetype off		" required!
 " http://www.erikzaadi.com/2012/03/19/auto-installing-vundle-from-your-vimrc/
 " Setting up Vundle - the vim plugin bundler
 let iCanHazVundle=1
-let vundle_readme=expand('~/.vim/bundle/vundle/README.md')
+let vundle_readme=expand('~/.vim/bundle/Vundle.vim/README.md')
 if !filereadable(vundle_readme)
   echo "Installing Vundle.."
   echo ""
   silent !mkdir -p ~/.vim/bundle
-  silent !git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle
+  silent !git clone https://github.com/gmarik/Vundle.vim ~/.vim/bundle/Vundle.vim/
   let iCanHazVundle=0
 endif
 
-set rtp+=~/.vim/bundle/vundle/
+set rtp+=~/.vim/bundle/Vundle.vim/
 call vundle#rc()
 
 " let Vundle manage Vundle
 " required!
-Bundle 'gmarik/vundle'
+Plugin 'gmarik/Vundle.vim'
 
 
 "---------------------Vundle plugin-list---------------------
 " ---utility
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'terryma/vim-multiple-cursors'
-Bundle 'chusiang/vim-sdcv'
-Bundle 'vimspell'
+Plugin 'Lokaltog/vim-easymotion'
+Plugin 'terryma/vim-multiple-cursors'
+Plugin 'chusiang/vim-sdcv'
+Plugin 'vimspell'
 
 " ---file management
-Bundle 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdtree'
 
 " ---autocomplete
-Bundle 'vim-scripts/L9'
-Bundle 'othree/vim-autocomplpop'
+Plugin 'vim-scripts/L9'
+Plugin 'othree/vim-autocomplpop'
 
 " ---snippets
-Bundle 'MarcWeber/vim-addon-mw-utils'
-Bundle 'tomtom/tlib_vim'
-Bundle 'garbas/vim-snipmate'
-Bundle 'honza/vim-snippets'
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim'
+Plugin 'garbas/vim-snipmate'
+Plugin 'honza/vim-snippets'
 
 " ---git
-Bundle 'airblade/vim-gitgutter'
+Plugin 'airblade/vim-gitgutter'
 
 " ---developement
-Bundle 'Townk/vim-autoclose'
-Bundle 'cscope.vim'
-Bundle 'tomtom/tcomment_vim'
-Bundle 'bling/vim-airline'
-Bundle 'kien/rainbow_parentheses.vim'
-Bundle 'Yggdroot/indentLine'
-Bundle 'bronson/vim-trailing-whitespace'
-Bundle 'majutsushi/tagbar'
-Bundle 'michaeljsmith/vim-indent-object'
+Plugin 'Townk/vim-autoclose'
+Plugin 'cscope.vim'
+Plugin 'tomtom/tcomment_vim'
+Plugin 'bling/vim-airline'
+Plugin 'kien/rainbow_parentheses.vim'
+Plugin 'Yggdroot/indentLine'
+Plugin 'bronson/vim-trailing-whitespace'
+Plugin 'majutsushi/tagbar'
+Plugin 'michaeljsmith/vim-indent-object'
 Plugin 'rizzatti/dash.vim'
 
 " ---syntax highlight and detection
 "  overall
-Bundle 'scrooloose/syntastic'
+Plugin 'scrooloose/syntastic'
 "  python
-Bundle 'klen/python-mode'
-Bundle 'davidhalter/jedi-vim'
+Plugin 'klen/python-mode'
+Plugin 'davidhalter/jedi-vim'
 "  C/C++
-Bundle 'Lee-W/c.vim'
-Bundle 'vim-jp/cpp-vim'
-Bundle 'octol/vim-cpp-enhanced-highlight'
+Plugin 'Lee-W/c.vim'
+Plugin 'vim-jp/cpp-vim'
+Plugin 'octol/vim-cpp-enhanced-highlight'
 "  Java
-Bundle 'adragomir/javacomplete'
+Plugin 'adragomir/javacomplete'
 "  Web
-Bundle 'othree/html5.vim'
-Bundle 'hail2u/vim-css3-syntax'
-Bundle 'othree/vim-javascript-syntax'
-Bundle 'mattn/emmet-vim'
+Plugin 'othree/html5.vim'
+Plugin 'hail2u/vim-css3-syntax'
+Plugin 'othree/vim-javascript-syntax'
+Plugin 'mattn/emmet-vim'
 "  Document
-Bundle 'plasticboy/vim-markdown'
+Plugin 'plasticboy/vim-markdown'
 
 
 " ---theme
-Bundle 'fugalh/desert.vim'
-" Bundle 'd11wtq/tomorrow-theme-vim'
-" Bundle 'tomasr/molokai'
+Plugin 'fugalh/desert.vim'
+" Plugin 'd11wtq/tomorrow-theme-vim'
+" Plugin 'tomasr/molokai'
 
 " ---plugin not installed
-" Bundle 'vimwiki'
-" Bundle 'kien/ctrlp.vim'
-" Bundle 'tpope/vim-fugitive'
-" Bundle 'lervag/vim-latex'
+" Plugin 'vimwiki'
+" Plugin 'kien/ctrlp.vim'
+" Plugin 'tpope/vim-fugitive'
+" Plugin 'lervag/vim-latex'
 
 "---------------------General setting---------------------
 syntax on					"syntax highlight
