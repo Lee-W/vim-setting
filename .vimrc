@@ -67,6 +67,7 @@ Plugin 'davidhalter/jedi-vim'
 Plugin 'Lee-W/c.vim'
 Plugin 'vim-jp/cpp-vim'
 Plugin 'octol/vim-cpp-enhanced-highlight'
+Plugin 'rhysd/vim-clang-format'
 "  Java
 Plugin 'adragomir/javacomplete'
 "  Web
@@ -222,6 +223,17 @@ filetype plugin on
 let g:C_InsertFileHeader = 'no'
 let g:C_CFlags = '-g -O0 -c'
 let g:C_LFlags = '-g -O0'
+
+" ---clang-format
+let g:clang_format#style_options = {
+            \ "AccessModifierOffset" : -4,
+            \ "AllowShortBlocksOnASingleLine" : "false",
+            \ "AllowShortFunctionsOnASingleLine" : "false",
+            \ "AllowShortLoopsOnASingleLine" : "false",
+            \ "AllowShortIfStatementsOnASingleLine" : "false",
+            \ "AlwaysBreakTemplateDeclarations" : "true",
+            \ "Standard" : "C++11",
+            \ "BreakBeforeBraces" : "Stroustrup"}
 
 " ---python-mode
 let g:pymode_python = 'python3'
