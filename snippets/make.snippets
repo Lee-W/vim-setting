@@ -22,26 +22,3 @@ snippet clean
 	clean:
 		rm -rf *.o
 
-snippet CPP
-	CC := g++-4.8
-	CFLAG := -std=c++11
-
-	TARGET := ${1:target}
-	BUILD_DIR := build
-	SRC_DIR := src
-
-	SOURCES := $(wildcard $(SRC_DIR)/*.cpp)
-	HEADERS := $(wildcard $(SRC_DIR)/*.h)
-	OBJS := $(BUILD_DIR)/$(notdir $(SOURCES:.cpp=.o))
-
-
-	$(TARGET): Syntax.cpp $(OBJS)
-		$(CC) -o $(TARGET) $^
-
-	$(OBJS): $(SOURCES) $(HEADERS)
-		@mkdir -p $(BUILD_DIR)
-		$(CC) -c -o $@ $< $(CFLAG)
-
-	.PHONY: clean
-	clean:
-		rm -r $(BUILD_DIR) $(TARGET)
