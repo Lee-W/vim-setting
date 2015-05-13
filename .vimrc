@@ -231,10 +231,8 @@ let g:C_LFlags = '-g -O0'
 " ---clang-format
 let g:clang_format#style_options = {
             \ "AccessModifierOffset" : -4,
-            \ "AllowShortBlocksOnASingleLine" : "false",
-            \ "AllowShortFunctionsOnASingleLine" : "false",
-            \ "AllowShortLoopsOnASingleLine" : "false",
             \ "AllowShortIfStatementsOnASingleLine" : "false",
+            \ "AllowShortLoopsOnASingleLine" : "false",
             \ "AlwaysBreakTemplateDeclarations" : "true",
             \ "Standard" : "C++11",
             \ "BreakBeforeBraces" : "Stroustrup"}
