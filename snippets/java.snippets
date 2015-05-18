@@ -286,3 +286,15 @@ snippet ru
 	unauthorized(${1:param});
 snippet unless
 	(unless=${1:param});
+
+
+## Custom
+snippet openfile
+	String fileName;
+	try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
+		String line;
+		while ((line = br.readLine()) != null) {
+		}
+	} catch (IOException e) {
+		e.printStackTrace()
+	}
