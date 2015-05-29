@@ -70,11 +70,13 @@ Plugin 'octol/vim-cpp-enhanced-highlight'
 Plugin 'rhysd/vim-clang-format'
 "  Java
 Plugin 'adragomir/javacomplete'
+Plugin 'tfnico/vim-gradle'
 "  Web
 Plugin 'othree/html5.vim'
 Plugin 'hail2u/vim-css3-syntax'
 Plugin 'othree/vim-javascript-syntax'
 Plugin 'mattn/emmet-vim'
+Plugin 'lukaszb/vim-web-indent'
 "  Document
 Plugin 'plasticboy/vim-markdown'
 
@@ -248,10 +250,10 @@ let g:pymode_lint_checkers = ['pyflakes', 'pep8', 'pylint']
 
 " ---jedi-vim
 let g:jedi#popup_on_dot = 1
-let g:jedi#popup_select_first = 0
+let g:jedi#popup_select_first = 1
 let g:jedi#force_py_version = 3
 let g:jedi#completions_command = "<leader>a"
-let g:jedi#show_call_signatures = 0
+" let g:jedi#show_call_signatures = 0
 " let g:jedi#goto_assignments_command = "<leader>g"
 " let g:jedi#goto_definitions_command = "<leader>d"
 " let g:jedi#documentation_command = "K"
