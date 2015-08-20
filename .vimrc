@@ -44,6 +44,7 @@ Plugin 'honza/vim-snippets'
 
 " ---git
 Plugin 'airblade/vim-gitgutter'
+Plugin 'tpope/vim-fugitive'
 
 " ---developement
 Plugin 'Townk/vim-autoclose'
@@ -243,7 +244,7 @@ let g:clang_format#style_options = {
 let g:pymode_python = 'python3'
 let g:pymode_indent = 1
 let g:pymode_motion = 1
-let g:pymode_options_max_line_length = 100
+let g:pymode_options_max_line_length = 119
 let g:pymode_rope = 0
 let g:pymode_lint_checkers = ['pyflakes', 'pep8', 'pylint']
 " au CompleteDone * pclose
