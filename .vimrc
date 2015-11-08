@@ -28,6 +28,7 @@ Plugin 'Lokaltog/vim-easymotion'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'chusiang/vim-sdcv'
 Plugin 'vimspell'
+Plugin 'kien/ctrlp.vim'
 
 " ---file management
 Plugin 'scrooloose/nerdtree'
@@ -51,6 +52,7 @@ Plugin 'Townk/vim-autoclose'
 Plugin 'cscope.vim'
 Plugin 'tomtom/tcomment_vim'
 Plugin 'bling/vim-airline'
+Plugin 'fweep/vim-tabber'
 Plugin 'luochen1990/rainbow'
 Plugin 'Yggdroot/indentLine'
 Plugin 'bronson/vim-trailing-whitespace'
@@ -67,11 +69,10 @@ Plugin 'davidhalter/jedi-vim'
 "  C/C++
 Plugin 'Lee-W/c.vim'
 Plugin 'vim-jp/cpp-vim'
-Plugin 'octol/vim-cpp-enhanced-highlight'
 Plugin 'rhysd/vim-clang-format'
-"  Java
-Plugin 'adragomir/javacomplete'
-Plugin 'tfnico/vim-gradle'
+Plugin 'octol/vim-cpp-enhanced-highlight'
+" Julia
+Plugin 'JuliaLang/julia-vim'
 "  Web
 Plugin 'othree/html5.vim'
 Plugin 'hail2u/vim-css3-syntax'
@@ -81,16 +82,12 @@ Plugin 'lukaszb/vim-web-indent'
 "  Document
 Plugin 'plasticboy/vim-markdown'
 
-
 " ---theme
 Plugin 'fugalh/desert.vim'
 " Plugin 'd11wtq/tomorrow-theme-vim'
 " Plugin 'tomasr/molokai'
 
 " ---plugin not installed
-" Plugin 'vimwiki'
-" Plugin 'kien/ctrlp.vim'
-" Plugin 'tpope/vim-fugitive'
 " Plugin 'lervag/vim-latex'
 
 "---------------------General setting---------------------
@@ -118,6 +115,16 @@ set incsearch               "搜尋時立即跳到符合的pattern
 autocmd FileType make setlocal noexpandtab
 "disable expandtab when editing makefile
 
+au BufNewFile,BufRead *.js, *.html, *.css
+    \ set tabstop=2
+    \ set softtabstop=2
+    \ set shiftwidth=2
+
+"---------------------split navigations
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
 
 "---------------------Encoding---------------------
 set encoding=utf-8
@@ -125,13 +132,6 @@ set fileencodings=utf-8,cp950,big5
 
 "---------------------Status line---------------------
 set laststatus=2   " Always show the statusline
-
-"---------------------folding---------------------
-" set foldenable
-" set foldmethod=syntax
-" set foldcolumn=0
-" nnoremap @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')
-"就可以使用空白鍵來折疊程式碼
 
 
 "---------------------key binding---------------------
@@ -217,13 +217,6 @@ let g:rainbow_active = 1
     \   }
     \}
 
-" --- javacomplete
-autocmd Filetype java setlocal omnifunc=javacomplete#Complete
-autocmd Filetype java map <leader>b :call javacomplete#GoToDefinition()<CR>
-
-" ---neocomplcache
-let g:neocomplcache_enable_at_startup = 1
-
 " ---c.vim
 filetype plugin on
 "disable the header when creatin a C/C++ file
@@ -268,6 +261,9 @@ let g:EasyMotion_leader_key = 'f'
 " ---emmet-vim
 autocmd filetype html,css EmmetInstall
 " let g:user_emmet_install_global = 0
+
+" ---tabber
+set tabline=%!tabber#TabLine()
 
 
 " ---theme
