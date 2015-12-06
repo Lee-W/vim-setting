@@ -22,13 +22,14 @@ call vundle#rc()
 Plugin 'gmarik/Vundle.vim'
 
 
+" let g:python3_host_prog = '/Users/LeeW/anaconda/bin/python3'
 "---------------------Vundle plugin-list---------------------
 " ---utility
 Plugin 'Lokaltog/vim-easymotion'
-Plugin 'terryma/vim-multiple-cursors'
-Plugin 'chusiang/vim-sdcv'
 Plugin 'vimspell'
 Plugin 'kien/ctrlp.vim'
+" Plugin 'terryma/vim-multiple-cursors'
+" Plugin 'chusiang/vim-sdcv'
 
 " ---file management
 Plugin 'scrooloose/nerdtree'
@@ -57,8 +58,8 @@ Plugin 'luochen1990/rainbow'
 Plugin 'Yggdroot/indentLine'
 Plugin 'bronson/vim-trailing-whitespace'
 Plugin 'majutsushi/tagbar'
-Plugin 'michaeljsmith/vim-indent-object'
-Plugin 'rizzatti/dash.vim'
+" Plugin 'michaeljsmith/vim-indent-object'
+" Plugin 'rizzatti/dash.vim'
 
 " ---syntax highlight and detection
 "  overall
@@ -112,10 +113,10 @@ set smarttab                "根據檔案中其他地方的空格來判斷一個
 set expandtab               "將Tab鍵自動轉換成空格,真正需要Tab鍵時使用[Ctrl + V + Tab]
 set incsearch               "搜尋時立即跳到符合的pattern
 
-autocmd FileType make setlocal noexpandtab
 "disable expandtab when editing makefile
+autocmd FileType make setlocal noexpandtab
 
-au BufNewFile,BufRead *.js, *.html, *.css
+autocmd FileType html,css
     \ set tabstop=2
     \ set softtabstop=2
     \ set shiftwidth=2
@@ -139,7 +140,7 @@ set laststatus=2   " Always show the statusline
 nmap <F2> :NERDTreeToggle<CR>
 
 " 在單字上按下F3就能開啟sdcv查詢
-nmap <F3> :call SearchWord()<CR>
+" nmap <F3> :call SearchWord()<CR>
 
 " 開啟spell checking
 nmap <F7> :setlocal spell!<cr>
@@ -170,13 +171,13 @@ let g:syntastic_mode_map = {
     \ "mode": "active",
     \ "active_filetypes": [],
     \ "passive_filetypes": ["python"] }
-" let g:syntastic_python_python_exe = 'python3'
-" let g:syntastic_python_checkers=['flake8', 'py3kwarn', 'pep8']
 let g:syntastic_cpp_compiler = 'clang++'
 let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
+" let g:syntastic_python_python_exe = 'python3'
+" let g:syntastic_python_checkers=['flake8', 'py3kwarn', 'pep8']
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
@@ -240,6 +241,7 @@ let g:pymode_motion = 1
 let g:pymode_options_max_line_length = 119
 let g:pymode_rope = 0
 let g:pymode_lint_checkers = ['pyflakes', 'pep8', 'pylint']
+let g:pymode_lint_ignore = "C0111, W0621"
 " au CompleteDone * pclose
 
 " ---jedi-vim
@@ -298,8 +300,3 @@ endif
 
 " git commit
 autocmd Filetype gitcommit setlocal spell textwidth=72
-
-" ---開啟滑鼠
-" if has('mouse')
-"     set mouse=a
-" endif
