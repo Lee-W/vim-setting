@@ -1,95 +1,77 @@
-"---------------------Vundle---------------------
-set nocompatible	" not compatible with the old-fashion vi mode
-filetype off		" required!
+"---------------------vim-plug
+call plug#begin('~/.vim/plugged')
 
-" http://www.erikzaadi.com/2012/03/19/auto-installing-vundle-from-your-vimrc/
-" Setting up Vundle - the vim plugin bundler
-let iCanHazVundle=1
-let vundle_readme=expand('~/.vim/bundle/Vundle.vim/README.md')
-if !filereadable(vundle_readme)
-  echo "Installing Vundle.."
-  echo ""
-  silent !mkdir -p ~/.vim/bundle
-  silent !git clone https://github.com/gmarik/Vundle.vim ~/.vim/bundle/Vundle.vim/
-  let iCanHazVundle=0
-endif
-
-set rtp+=~/.vim/bundle/Vundle.vim/
-call vundle#rc()
-
-" let Vundle manage Vundle
-" required!
-Plugin 'gmarik/Vundle.vim'
-
-
-" let g:python3_host_prog = '/Users/LeeW/anaconda/bin/python3'
-"---------------------Vundle plugin-list---------------------
 " ---utility
-Plugin 'Lokaltog/vim-easymotion'
-Plugin 'vimspell'
-Plugin 'kien/ctrlp.vim'
-" Plugin 'terryma/vim-multiple-cursors'
-" Plugin 'chusiang/vim-sdcv'
+Plug 'Lokaltog/vim-easymotion'
+Plug 'vimspell'
+Plug 'kien/ctrlp.vim'
+" Plug 'terryma/vim-multiple-cursors'
+" Plug 'chusiang/vim-sdcv'
 
 " ---file management
-Plugin 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree'
 
 " ---autocomplete
-Plugin 'vim-scripts/L9'
-Plugin 'othree/vim-autocomplpop'
+Plug 'vim-scripts/L9'
+Plug 'othree/vim-autocomplpop'
 
 " ---snippets
-Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'tomtom/tlib_vim'
-Plugin 'garbas/vim-snipmate'
-Plugin 'honza/vim-snippets'
+Plug 'MarcWeber/vim-addon-mw-utils'
+Plug 'tomtom/tlib_vim'
+Plug 'garbas/vim-snipmate'
+Plug 'honza/vim-snippets'
 
 " ---git
-Plugin 'airblade/vim-gitgutter'
-Plugin 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive'
 
 " ---developement
-Plugin 'Townk/vim-autoclose'
-Plugin 'cscope.vim'
-Plugin 'tomtom/tcomment_vim'
-Plugin 'bling/vim-airline'
-Plugin 'fweep/vim-tabber'
-Plugin 'luochen1990/rainbow'
-Plugin 'Yggdroot/indentLine'
-Plugin 'bronson/vim-trailing-whitespace'
-Plugin 'majutsushi/tagbar'
-" Plugin 'michaeljsmith/vim-indent-object'
-" Plugin 'rizzatti/dash.vim'
+Plug 'Townk/vim-autoclose'
+Plug 'cscope.vim'
+Plug 'tomtom/tcomment_vim'
+Plug 'bling/vim-airline'
+Plug 'fweep/vim-tabber'
+Plug 'luochen1990/rainbow'
+Plug 'Yggdroot/indentLine'
+Plug 'bronson/vim-trailing-whitespace'
+Plug 'majutsushi/tagbar'
+" Plug 'michaeljsmith/vim-indent-object'
+" Plug 'rizzatti/dash.vim'
 
 " ---syntax highlight and detection
 "  overall
-Plugin 'scrooloose/syntastic'
+Plug 'scrooloose/syntastic'
 "  python
-Plugin 'klen/python-mode'
-Plugin 'davidhalter/jedi-vim'
+Plug 'klen/python-mode'
+Plug 'davidhalter/jedi-vim'
 "  C/C++
-Plugin 'Lee-W/c.vim'
-Plugin 'vim-jp/cpp-vim'
-Plugin 'rhysd/vim-clang-format'
-Plugin 'octol/vim-cpp-enhanced-highlight'
+Plug 'Lee-W/c.vim', {'for': 'cpp'}
+Plug 'vim-jp/cpp-vim'
+Plug 'rhysd/vim-clang-format'
+Plug 'octol/vim-cpp-enhanced-highlight'
 " Julia
-Plugin 'JuliaLang/julia-vim'
+Plug 'JuliaLang/julia-vim'
 "  Web
-Plugin 'othree/html5.vim'
-Plugin 'hail2u/vim-css3-syntax'
-Plugin 'othree/vim-javascript-syntax'
-Plugin 'mattn/emmet-vim'
-Plugin 'lukaszb/vim-web-indent'
+Plug 'othree/html5.vim'
+Plug 'hail2u/vim-css3-syntax'
+Plug 'othree/vim-javascript-syntax'
+Plug 'mattn/emmet-vim'
+Plug 'lukaszb/vim-web-indent'
+" octave
+Plug 'octave.vim'
 "  Document
-Plugin 'plasticboy/vim-markdown'
+Plug 'plasticboy/vim-markdown'
 
 " ---theme
-Plugin 'fugalh/desert.vim'
-" Plugin 'd11wtq/tomorrow-theme-vim'
-" Plugin 'tomasr/molokai'
+Plug 'fugalh/desert.vim'
+" Plug 'd11wtq/tomorrow-theme-vim'
+" Plug 'tomasr/molokai'
 
 " ---plugin not installed
-" Plugin 'lervag/vim-latex'
+" Plug 'lervag/vim-latex'
+"
+call plug#end()
+
 
 "---------------------General setting---------------------
 syntax on					"syntax highlight
@@ -116,10 +98,10 @@ set incsearch               "搜尋時立即跳到符合的pattern
 "disable expandtab when editing makefile
 autocmd FileType make setlocal noexpandtab
 
-autocmd FileType html,css
-    \ set tabstop=2
-    \ set softtabstop=2
-    \ set shiftwidth=2
+" autocmd FileType html,css
+    " \ set tabstop=2
+    " \ set softtabstop=2
+    " \ set shiftwidth=2
 
 "---------------------split navigations
 nnoremap <C-J> <C-W><C-J>
