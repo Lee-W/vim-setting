@@ -1,25 +1,28 @@
+" Load vim-plug
+if empty(glob("~/.vim/autoload/plug.vim"))
+    execute '!curl -fLo ~/.vim/autoload/plug.vim https://raw.github.com/junegunn/vim-plug/master/plug.vim'
+endif
+
 "---------------------vim-plug
 call plug#begin('~/.vim/plugged')
 
 " ---utility
 Plug 'Lokaltog/vim-easymotion'
-Plug 'vimspell'
+Plug 'vimspell', {'for': ['txt', 'md', 'tex']}
 Plug 'kien/ctrlp.vim'
 " Plug 'terryma/vim-multiple-cursors'
 " Plug 'chusiang/vim-sdcv'
 
 " ---file management
-Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
 
 " ---autocomplete
 Plug 'vim-scripts/L9'
 Plug 'othree/vim-autocomplpop'
 
 " ---snippets
-Plug 'MarcWeber/vim-addon-mw-utils'
-Plug 'tomtom/tlib_vim'
-Plug 'garbas/vim-snipmate'
-Plug 'honza/vim-snippets'
+Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+
 
 " ---git
 Plug 'airblade/vim-gitgutter'
@@ -30,13 +33,14 @@ Plug 'Townk/vim-autoclose'
 Plug 'cscope.vim'
 Plug 'tomtom/tcomment_vim'
 Plug 'bling/vim-airline'
+" Plug 'itchyny/lightline.vim'
 Plug 'fweep/vim-tabber'
 Plug 'luochen1990/rainbow'
 Plug 'Yggdroot/indentLine'
 Plug 'bronson/vim-trailing-whitespace'
 Plug 'majutsushi/tagbar'
+Plug 'tpope/vim-surround'
 " Plug 'michaeljsmith/vim-indent-object'
-" Plug 'rizzatti/dash.vim'
 
 " ---syntax highlight and detection
 "  overall
@@ -44,17 +48,18 @@ Plug 'scrooloose/syntastic'
 "  python
 Plug 'klen/python-mode'
 Plug 'davidhalter/jedi-vim'
+Plug 'jmcomets/vim-pony/'
+Plug 'Glench/Vim-Jinja2-Syntax'
 "  C/C++
-Plug 'Lee-W/c.vim', {'for': 'cpp'}
-Plug 'vim-jp/cpp-vim'
-Plug 'rhysd/vim-clang-format'
-Plug 'octol/vim-cpp-enhanced-highlight'
-" Julia
-Plug 'JuliaLang/julia-vim'
+Plug 'Lee-W/c.vim', {'for' : ['cpp', 'c'] }
+Plug 'vim-jp/cpp-vim', {'for': ['cpp']}
+Plug 'rhysd/vim-clang-format', {'for': ['cpp', 'c']}
+Plug 'octol/vim-cpp-enhanced-highlight', {'for': ['cpp']}
 "  Web
 Plug 'othree/html5.vim'
 Plug 'hail2u/vim-css3-syntax'
 Plug 'othree/vim-javascript-syntax'
+Plug 'othree/javascript-libraries-syntax.vim'
 Plug 'mattn/emmet-vim'
 Plug 'lukaszb/vim-web-indent'
 " octave
@@ -95,13 +100,8 @@ set smarttab                "根據檔案中其他地方的空格來判斷一個
 set expandtab               "將Tab鍵自動轉換成空格,真正需要Tab鍵時使用[Ctrl + V + Tab]
 set incsearch               "搜尋時立即跳到符合的pattern
 
-"disable expandtab when editing makefile
+" disable expandtab when editing makefile
 autocmd FileType make setlocal noexpandtab
-
-" autocmd FileType html,css
-    " \ set tabstop=2
-    " \ set softtabstop=2
-    " \ set shiftwidth=2
 
 "---------------------split navigations
 nnoremap <C-J> <C-W><C-J>
@@ -115,7 +115,6 @@ set fileencodings=utf-8,cp950,big5
 
 "---------------------Status line---------------------
 set laststatus=2   " Always show the statusline
-
 
 "---------------------key binding---------------------
 " 開始NERDTree
@@ -138,7 +137,6 @@ map ` :TComment<cr>
 vmap ` :TComment<cr>gv
 
 
-
 "---------------------plug-in setting---------------------
 " --- vim-gitgutter
 let g:gitgutter_enabled = 1
@@ -154,10 +152,11 @@ let g:syntastic_mode_map = {
     \ "active_filetypes": [],
     \ "passive_filetypes": ["python"] }
 let g:syntastic_cpp_compiler = 'clang++'
-let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
+let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc+'
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
+let g:syntastic_html_tidy_ignore_errors = ['trimming empty <']
 " let g:syntastic_python_python_exe = 'python3'
 " let g:syntastic_python_checkers=['flake8', 'py3kwarn', 'pep8']
 
@@ -200,6 +199,15 @@ let g:rainbow_active = 1
     \   }
     \}
 
+" ---UltiSnips
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+
 " ---c.vim
 filetype plugin on
 "disable the header when creatin a C/C++ file
@@ -223,7 +231,7 @@ let g:pymode_motion = 1
 let g:pymode_options_max_line_length = 119
 let g:pymode_rope = 0
 let g:pymode_lint_checkers = ['pyflakes', 'pep8', 'pylint']
-let g:pymode_lint_ignore = "C0111, W0621"
+let g:pymode_lint_ignore = "C0111, W0621, E501"
 " au CompleteDone * pclose
 
 " ---jedi-vim
@@ -248,6 +256,9 @@ autocmd filetype html,css EmmetInstall
 
 " ---tabber
 set tabline=%!tabber#TabLine()
+
+" ---javascript-libraries-syntax.vim
+let g:used_javascript_libs = 'jquery'
 
 
 " ---theme
