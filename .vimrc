@@ -65,7 +65,7 @@ Plug 'lukaszb/vim-web-indent'
 " octave
 Plug 'octave.vim'
 "  Document
-Plug 'plasticboy/vim-markdown'
+" Plug 'plasticboy/vim-markdown'
 
 " ---theme
 Plug 'fugalh/desert.vim'
