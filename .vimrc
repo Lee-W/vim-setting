@@ -46,8 +46,8 @@ Plug 'tpope/vim-surround'
 "  overall
 Plug 'scrooloose/syntastic'
 "  python
-Plug 'klen/python-mode'
-Plug 'davidhalter/jedi-vim'
+Plug 'klen/python-mode', {'for': ['python']}
+Plug 'davidhalter/jedi-vim', {'for': ['python']}
 Plug 'jmcomets/vim-pony/'
 Plug 'Glench/Vim-Jinja2-Syntax'
 "  C/C++
@@ -61,7 +61,7 @@ Plug 'hail2u/vim-css3-syntax'
 Plug 'othree/vim-javascript-syntax'
 Plug 'othree/javascript-libraries-syntax.vim'
 Plug 'mattn/emmet-vim'
-Plug 'lukaszb/vim-web-indent'
+" Plug 'lukaszb/vim-web-indent'
 " octave
 Plug 'octave.vim'
 "  Document
@@ -102,6 +102,8 @@ set incsearch               "搜尋時立即跳到符合的pattern
 
 " disable expandtab when editing makefile
 autocmd FileType make setlocal noexpandtab
+
+autocmd Filetype html setlocal ts=2 sts=2 sw=2
 
 "---------------------split navigations
 nnoremap <C-J> <C-W><C-J>
@@ -251,7 +253,7 @@ let g:jedi#completions_command = "<leader>a"
 let g:EasyMotion_leader_key = 'f'
 
 " ---emmet-vim
-autocmd filetype html,css EmmetInstall
+autocmd filetype html,css,htmlm4 EmmetInstall
 " let g:user_emmet_install_global = 0
 
 " ---tabber
@@ -259,7 +261,6 @@ set tabline=%!tabber#TabLine()
 
 " ---javascript-libraries-syntax.vim
 let g:used_javascript_libs = 'jquery'
-
 
 " ---theme
 colorscheme desert
