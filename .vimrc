@@ -10,8 +10,6 @@ call plug#begin('~/.vim/plugged')
 Plug 'Lokaltog/vim-easymotion'
 Plug 'vimspell', {'for': ['txt', 'md', 'tex']}
 Plug 'kien/ctrlp.vim'
-" Plug 'terryma/vim-multiple-cursors'
-" Plug 'chusiang/vim-sdcv'
 
 " ---file management
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
@@ -23,7 +21,6 @@ Plug 'othree/vim-autocomplpop'
 " ---snippets
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 
-
 " ---git
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
@@ -33,14 +30,12 @@ Plug 'Townk/vim-autoclose'
 Plug 'cscope.vim'
 Plug 'tomtom/tcomment_vim'
 Plug 'bling/vim-airline'
-" Plug 'itchyny/lightline.vim'
 Plug 'fweep/vim-tabber'
 Plug 'luochen1990/rainbow'
 Plug 'Yggdroot/indentLine'
 Plug 'bronson/vim-trailing-whitespace'
 Plug 'majutsushi/tagbar'
 Plug 'tpope/vim-surround'
-" Plug 'michaeljsmith/vim-indent-object'
 
 " ---syntax highlight and detection
 "  overall
@@ -61,11 +56,8 @@ Plug 'hail2u/vim-css3-syntax'
 Plug 'othree/vim-javascript-syntax'
 Plug 'othree/javascript-libraries-syntax.vim'
 Plug 'mattn/emmet-vim'
-" Plug 'lukaszb/vim-web-indent'
 " octave
 Plug 'octave.vim'
-"  Document
-" Plug 'plasticboy/vim-markdown'
 
 " ---theme
 Plug 'fugalh/desert.vim'
@@ -73,6 +65,10 @@ Plug 'fugalh/desert.vim'
 " Plug 'tomasr/molokai'
 
 " ---plugin not installed
+" Plug 'itchyny/lightline.vim'
+" Plug 'michaeljsmith/vim-indent-object'
+" Plug 'terryma/vim-multiple-cursors'
+" Plug 'chusiang/vim-sdcv'
 " Plug 'lervag/vim-latex'
 "
 call plug#end()
@@ -104,6 +100,7 @@ set incsearch               "搜尋時立即跳到符合的pattern
 autocmd FileType make setlocal noexpandtab
 
 autocmd Filetype html setlocal ts=2 sts=2 sw=2
+autocmd Filetype javascript setlocal ts=2 sts=2 sw=2
 
 "---------------------split navigations
 nnoremap <C-J> <C-W><C-J>
@@ -121,9 +118,6 @@ set laststatus=2   " Always show the statusline
 "---------------------key binding---------------------
 " 開始NERDTree
 nmap <F2> :NERDTreeToggle<CR>
-
-" 在單字上按下F3就能開啟sdcv查詢
-" nmap <F3> :call SearchWord()<CR>
 
 " 開啟spell checking
 nmap <F7> :setlocal spell!<cr>
@@ -159,17 +153,11 @@ set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 let g:syntastic_html_tidy_ignore_errors = ['trimming empty <']
-" let g:syntastic_python_python_exe = 'python3'
-" let g:syntastic_python_checkers=['flake8', 'py3kwarn', 'pep8']
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
-
-" --- vim-markdown
-let g:vim_markdown_folding_disabled=1       "disable folding
-let g:vim_markdown_initial_foldlevel=1     "set the initial foldlevel
 
 " --- rainbow
 let g:rainbow_active = 1
@@ -232,7 +220,7 @@ let g:pymode_indent = 1
 let g:pymode_motion = 1
 let g:pymode_options_max_line_length = 119
 let g:pymode_rope = 0
-let g:pymode_lint_checkers = ['pyflakes', 'pep8', 'pylint']
+let g:pymode_lint_checkers = ['pyflakes', 'pylint', 'pep8']
 let g:pymode_lint_ignore = "C0111, W0621, E501"
 " au CompleteDone * pclose
 
