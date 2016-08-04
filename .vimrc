@@ -10,6 +10,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'Lokaltog/vim-easymotion'
 Plug 'vimspell', {'for': ['txt', 'md', 'tex']}
 Plug 'kien/ctrlp.vim'
+Plug 'tpope/vim-repeat'
 
 " ---file management
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
@@ -44,6 +45,7 @@ Plug 'scrooloose/syntastic'
 Plug 'klen/python-mode', {'for': ['python']}
 Plug 'davidhalter/jedi-vim', {'for': ['python']}
 Plug 'jmcomets/vim-pony/'
+Plug 'lepture/vim-jinja'
 Plug 'Glench/Vim-Jinja2-Syntax'
 "  C/C++
 Plug 'Lee-W/c.vim', {'for' : ['cpp', 'c'] }
@@ -96,11 +98,16 @@ set smarttab                "根據檔案中其他地方的空格來判斷一個
 set expandtab               "將Tab鍵自動轉換成空格,真正需要Tab鍵時使用[Ctrl + V + Tab]
 set incsearch               "搜尋時立即跳到符合的pattern
 
+" Set up tab autocomplete in ex mode
+set wildmenu
+set wildmode=full
+
 " disable expandtab when editing makefile
 autocmd FileType make setlocal noexpandtab
 
 autocmd Filetype html setlocal ts=2 sts=2 sw=2
 autocmd Filetype javascript setlocal ts=2 sts=2 sw=2
+au BufNewFile,BufRead *.html,*.htm,*.shtml,*.stm setlocal ts=2 sts=2 sw=2
 
 "---------------------split navigations
 nnoremap <C-J> <C-W><C-J>
