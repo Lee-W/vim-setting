@@ -44,9 +44,10 @@ Plug 'scrooloose/syntastic'
 "  python
 Plug 'klen/python-mode', {'for': ['python']}
 Plug 'davidhalter/jedi-vim', {'for': ['python']}
-Plug 'jmcomets/vim-pony/'
+Plug 'jmcomets/vim-pony'
 Plug 'lepture/vim-jinja'
 Plug 'Glench/Vim-Jinja2-Syntax'
+Plug 'tshirtman/vim-cython', {'for': ['pyx']}
 "  C/C++
 Plug 'Lee-W/c.vim', {'for' : ['cpp', 'c'] }
 Plug 'vim-jp/cpp-vim', {'for': ['cpp']}
@@ -153,7 +154,7 @@ autocmd BufRead *.txt,*.md,*.tex setlocal spell
 let g:syntastic_mode_map = {
     \ "mode": "active",
     \ "active_filetypes": [],
-    \ "passive_filetypes": ["python"] }
+    \ "passive_filetypes": ["python"]}
 let g:syntastic_cpp_compiler = 'clang++'
 let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc+'
 set statusline+=%#warningmsg#
@@ -228,8 +229,10 @@ let g:pymode_motion = 1
 let g:pymode_options_max_line_length = 119
 let g:pymode_rope = 0
 let g:pymode_lint_checkers = ['pyflakes', 'pylint', 'pep8']
-let g:pymode_lint_ignore = "C0111, W0621, E501"
+" Note that pymode_lint_ignore content cannot contain space
+let g:pymode_lint_ignore = "C0111,W0621,E501"
 " au CompleteDone * pclose
+
 
 " ---jedi-vim
 let g:jedi#popup_on_dot = 1
