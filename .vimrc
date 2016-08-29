@@ -11,6 +11,7 @@ Plug 'Lokaltog/vim-easymotion'
 Plug 'vimspell', {'for': ['txt', 'md', 'tex']}
 Plug 'kien/ctrlp.vim'
 Plug 'tpope/vim-repeat'
+Plug 'vim-scripts/TaskList.vim'
 
 " ---file management
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
@@ -256,6 +257,11 @@ autocmd filetype html,css,htmlm4 EmmetInstall
 
 " ---tabber
 set tabline=%!tabber#TabLine()
+
+" ---tasklist
+let g:tlTokenList = ["TODO"]
+nnoremap ,td :TaskList<CR>
+
 
 " ---javascript-libraries-syntax.vim
 let g:used_javascript_libs = 'jquery'
