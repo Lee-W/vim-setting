@@ -1,6 +1,6 @@
 " Load vim-plug
 if empty(glob("~/.vim/autoload/plug.vim"))
-    execute '!curl -fLo ~/.vim/autoload/plug.vim https://raw.github.com/junegunn/vim-plug/master/plug.vim'
+    execute '!curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 endif
 
 "---------------------vim-plug
@@ -26,6 +26,7 @@ Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 " ---git
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
+Plug 'rhysd/conflict-marker.vim'
 
 " ---developement
 Plug 'Townk/vim-autoclose'
@@ -261,7 +262,6 @@ set tabline=%!tabber#TabLine()
 " ---tasklist
 let g:tlTokenList = ["TODO"]
 nnoremap ,td :TaskList<CR>
-
 
 " ---javascript-libraries-syntax.vim
 let g:used_javascript_libs = 'jquery'
