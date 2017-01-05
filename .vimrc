@@ -61,6 +61,7 @@ Plug 'hail2u/vim-css3-syntax'
 Plug 'othree/vim-javascript-syntax'
 Plug 'othree/javascript-libraries-syntax.vim'
 Plug 'mattn/emmet-vim'
+Plug 'nono/vim-handlebars'
 " octave
 Plug 'octave.vim'
 
@@ -110,7 +111,7 @@ autocmd FileType make setlocal noexpandtab
 
 autocmd Filetype html setlocal ts=2 sts=2 sw=2
 autocmd Filetype javascript setlocal ts=2 sts=2 sw=2
-au BufNewFile,BufRead *.html,*.htm,*.shtml,*.stm setlocal ts=2 sts=2 sw=2
+au BufNewFile,BufRead *.html,*.htm,*.shtml,*.stm,*.hbs,*.handlebars setlocal ts=2 sts=2 sw=2
 
 "---------------------split navigations
 nnoremap <C-J> <C-W><C-J>
@@ -241,7 +242,7 @@ let g:jedi#popup_on_dot = 1
 let g:jedi#popup_select_first = 1
 let g:jedi#force_py_version = 3
 let g:jedi#completions_command = "<leader>a"
-" let g:jedi#show_call_signatures = 0
+let g:jedi#show_call_signatures = 1
 " let g:jedi#goto_assignments_command = "<leader>g"
 " let g:jedi#goto_definitions_command = "<leader>d"
 " let g:jedi#documentation_command = "K"
