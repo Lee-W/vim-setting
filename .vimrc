@@ -42,13 +42,12 @@ Plug 'tpope/vim-surround'
 
 " ---syntax highlight and detection
 "  overall
-Plug 'scrooloose/syntastic'
+Plug 'w0rp/ale'
 "  python
 Plug 'klen/python-mode', {'for': ['python']}
 Plug 'davidhalter/jedi-vim', {'for': ['python']}
-Plug 'jmcomets/vim-pony'
-Plug 'lepture/vim-jinja'
-Plug 'Glench/Vim-Jinja2-Syntax'
+Plug 'lepture/vim-jinja', {'for': ['*.html', '*.htm']}
+Plug 'Glench/Vim-Jinja2-Syntax', {'for': ['*.html', '*.htm']}
 Plug 'tshirtman/vim-cython', {'for': ['pyx']}
 "  C/C++
 Plug 'Lee-W/c.vim', {'for' : ['cpp', 'c'] }
@@ -56,14 +55,17 @@ Plug 'vim-jp/cpp-vim', {'for': ['cpp']}
 Plug 'rhysd/vim-clang-format', {'for': ['cpp', 'c']}
 Plug 'octol/vim-cpp-enhanced-highlight', {'for': ['cpp']}
 "  Web
-Plug 'othree/html5.vim'
-Plug 'hail2u/vim-css3-syntax'
-Plug 'othree/vim-javascript-syntax'
-Plug 'othree/javascript-libraries-syntax.vim'
+Plug 'othree/html5.vim', {'for': ['*.html', '*.htm']}
+Plug 'othree/html5-syntax.vim', {'for': ['*.html', '*.htm']}
+Plug 'hail2u/vim-css3-syntax', {'for': ['css']}
 Plug 'mattn/emmet-vim'
-Plug 'nono/vim-handlebars'
+Plug 'pangloss/vim-javascript', {'for': ['javascript']}
+Plug 'othree/yajs.vim', {'for': ['javascript']}
+Plug 'othree/javascript-libraries-syntax.vim', {'for': ['javascript']}
+Plug 'nono/vim-handlebars', {'for': ['*.html', '*.htm', '*.hbs', '*.handlebars']}
+Plug 'elzr/vim-json', {'for': ['*.json']}
 " octave
-Plug 'octave.vim'
+Plug 'octave.vim', {'for': ['*.m']}
 
 " ---theme
 Plug 'fugalh/desert.vim'
@@ -71,6 +73,7 @@ Plug 'fugalh/desert.vim'
 " Plug 'tomasr/molokai'
 
 " ---plugin not installed
+" Plug 'scrooloose/syntastic'
 " Plug 'itchyny/lightline.vim'
 " Plug 'michaeljsmith/vim-indent-object'
 " Plug 'terryma/vim-multiple-cursors'
@@ -139,6 +142,9 @@ nmap <F8> :SyntasticToggleMode<CR>
 " 開啟tagbar
 nmap <F10> :TagbarToggle<CR>
 
+" 開啟TaskList
+nmap <F9> :TaskList<CR>
+
 " comment lines
 map ` :TComment<cr>
 vmap ` :TComment<cr>gv
@@ -154,21 +160,25 @@ set spelllang=en
 autocmd BufRead *.txt,*.md,*.tex setlocal spell
 
 " ---Syntastic
-let g:syntastic_mode_map = {
-    \ "mode": "active",
-    \ "active_filetypes": [],
-    \ "passive_filetypes": ["python"]}
-let g:syntastic_cpp_compiler = 'clang++'
-let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc+'
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-let g:syntastic_html_tidy_ignore_errors = ['trimming empty <']
+" let g:syntastic_mode_map = {
+"     \ "mode": "active",
+"     \ "active_filetypes": [],
+"     \ "passive_filetypes": ["python"]}
+" let g:syntastic_cpp_compiler = 'clang++'
+" let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc+'
+" set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%*
+" let g:syntastic_html_tidy_ignore_errors = ['trimming empty <']
+"
+" let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_auto_loc_list = 1
+" let g:syntastic_check_on_open = 1
+" let g:syntastic_check_on_wq = 0
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+" ---ale
+let g:ale_python_pylint_executable = 'python3'
+" let g:ale_python_flake8_executable = 'python3'
 
 " --- rainbow
 let g:rainbow_active = 1
@@ -233,7 +243,7 @@ let g:pymode_options_max_line_length = 119
 let g:pymode_rope = 0
 let g:pymode_lint_checkers = ['pyflakes', 'pylint', 'pep8']
 " Note that pymode_lint_ignore content cannot contain space
-let g:pymode_lint_ignore = "C0111,W0621,E501"
+let g:pymode_lint_ignore = "C0111,W0621,E501,F0002"
 " au CompleteDone * pclose
 
 
@@ -255,14 +265,15 @@ let g:EasyMotion_leader_key = 'f'
 
 " ---emmet-vim
 autocmd filetype html,css,htmlm4 EmmetInstall
-" let g:user_emmet_install_global = 0
 
 " ---tabber
 set tabline=%!tabber#TabLine()
 
 " ---tasklist
-let g:tlTokenList = ["TODO"]
-nnoremap ,td :TaskList<CR>
+let g:tlTokenList = ["TODO", "FIXME", "XXX"]
+
+" ---vim-javascript
+let g:javascript_plugin_flow = 1
 
 " ---javascript-libraries-syntax.vim
 let g:used_javascript_libs = 'jquery'
@@ -297,5 +308,5 @@ if has("autocmd")
                 \ endif
 endif
 
-" git commit
+" git commit max length
 autocmd Filetype gitcommit setlocal spell textwidth=72
