@@ -10,7 +10,6 @@ call plug#begin('~/.vim/plugged')
 Plug 'Lokaltog/vim-easymotion'
 Plug 'vimspell', {'for': ['txt', 'md', 'tex']}
 Plug 'kien/ctrlp.vim'
-Plug 'tpope/vim-repeat'
 Plug 'vim-scripts/TaskList.vim'
 
 " ---file management
@@ -32,7 +31,7 @@ Plug 'rhysd/conflict-marker.vim'
 Plug 'Townk/vim-autoclose'
 Plug 'cscope.vim'
 Plug 'tomtom/tcomment_vim'
-Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline', {'tag': 'v0.7'}
 Plug 'fweep/vim-tabber'
 Plug 'luochen1990/rainbow'
 Plug 'Yggdroot/indentLine'
@@ -74,7 +73,6 @@ Plug 'fugalh/desert.vim'
 
 " ---plugin not installed
 " Plug 'scrooloose/syntastic'
-" Plug 'itchyny/lightline.vim'
 " Plug 'michaeljsmith/vim-indent-object'
 " Plug 'terryma/vim-multiple-cursors'
 " Plug 'chusiang/vim-sdcv'
@@ -90,8 +88,9 @@ set cursorline              "顯示目前的游標位置
 set bg=dark                 "顯示不同的底色色調
 set ruler                   "顯示最後一行的狀態
 set hlsearch                "設定高亮度顯示搜尋結果
+set incsearch               "搜尋時立即跳到符合的pattern
 set confirm                 "操作過程有衝突時，以明確的文字來詢問
-set history=50              "保留 50 個使用過的指令
+set history=30              "保留 30 個使用過的指令
 set t_Co=256                "Explicitly tell Vim that the terminal supports 256 colors
 
 set autoindent				"自動縮排
@@ -103,7 +102,6 @@ set tabstop=4               "設置Tab寬度
 set softtabstop=4           "設置按退格鍵時可以一次刪除4個空格
 set smarttab                "根據檔案中其他地方的空格來判斷一個tab是多少個空格
 set expandtab               "將Tab鍵自動轉換成空格,真正需要Tab鍵時使用[Ctrl + V + Tab]
-set incsearch               "搜尋時立即跳到符合的pattern
 
 " Set up tab autocomplete in ex mode
 set wildmenu
@@ -115,6 +113,11 @@ autocmd FileType make setlocal noexpandtab
 autocmd Filetype html setlocal ts=2 sts=2 sw=2
 autocmd Filetype javascript setlocal ts=2 sts=2 sw=2
 au BufNewFile,BufRead *.html,*.htm,*.shtml,*.stm,*.hbs,*.handlebars setlocal ts=2 sts=2 sw=2
+
+set foldenable
+set foldlevelstart=10
+set foldnestmax=10
+set foldmethod=indent
 
 "---------------------split navigations
 nnoremap <C-J> <C-W><C-J>
@@ -136,9 +139,6 @@ nmap <F2> :NERDTreeToggle<CR>
 " 開啟spell checking
 nmap <F7> :setlocal spell!<cr>
 
-" 關閉syntax偵錯
-nmap <F8> :SyntasticToggleMode<CR>
-
 " 開啟tagbar
 nmap <F10> :TagbarToggle<CR>
 
@@ -159,26 +159,13 @@ highlight clear SignColumn " For the same appearance as your line number column 
 set spelllang=en
 autocmd BufRead *.txt,*.md,*.tex setlocal spell
 
-" ---Syntastic
-" let g:syntastic_mode_map = {
-"     \ "mode": "active",
-"     \ "active_filetypes": [],
-"     \ "passive_filetypes": ["python"]}
-" let g:syntastic_cpp_compiler = 'clang++'
-" let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc+'
-" set statusline+=%#warningmsg#
-" set statusline+=%{SyntasticStatuslineFlag()}
-" set statusline+=%*
-" let g:syntastic_html_tidy_ignore_errors = ['trimming empty <']
-"
-" let g:syntastic_always_populate_loc_list = 1
-" let g:syntastic_auto_loc_list = 1
-" let g:syntastic_check_on_open = 1
-" let g:syntastic_check_on_wq = 0
-
 " ---ale
-let g:ale_python_pylint_executable = 'python3'
-" let g:ale_python_flake8_executable = 'python3'
+let g:ale_linters = {
+\   'python': ['pylint'],
+\}
+let g:ale_python_pylint_options = '--rcfile ~/.pylintrc'
+
+
 
 " --- rainbow
 let g:rainbow_active = 1
@@ -277,6 +264,12 @@ let g:javascript_plugin_flow = 1
 
 " ---javascript-libraries-syntax.vim
 let g:used_javascript_libs = 'jquery'
+
+" ---ctrlp
+let g:ctrlp_match_window = 'bottom,order:ttb'
+let g:ctrlp_switch_buffer = 0
+let g:ctrlp_working_path_mode = 0
+let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
 
 " ---theme
 colorscheme desert
