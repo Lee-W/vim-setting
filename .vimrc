@@ -114,11 +114,6 @@ autocmd Filetype html setlocal ts=2 sts=2 sw=2
 autocmd Filetype javascript setlocal ts=2 sts=2 sw=2
 au BufNewFile,BufRead *.html,*.htm,*.shtml,*.stm,*.hbs,*.handlebars setlocal ts=2 sts=2 sw=2
 
-set foldenable
-set foldlevelstart=10
-set foldnestmax=10
-set foldmethod=indent
-
 "---------------------split navigations
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
