@@ -159,7 +159,7 @@ let g:ale_linters = {
 \   'python': ['pylint'],
 \}
 let g:ale_python_pylint_options = '--rcfile ~/.pylintrc'
-
+let g:ale_lint_on_text_changed = 'never'
 
 
 " --- rainbow
