@@ -3,14 +3,23 @@ if empty(glob("~/.vim/autoload/plug.vim"))
     execute '!curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 endif
 
-"---------------------vim-plug
 call plug#begin('~/.vim/plugged')
 
 " ---utility
 Plug 'Lokaltog/vim-easymotion'
 Plug 'vimspell', {'for': ['txt', 'md', 'tex']}
 Plug 'kien/ctrlp.vim'
-Plug 'vim-scripts/TaskList.vim'
+Plug 'cscope.vim'
+Plug 'liangfeng/TaskList.vim'
+Plug 'majutsushi/tagbar'
+Plug 'fweep/vim-tabber'
+Plug 'vim-airline/vim-airline', {'tag': 'v0.7'}
+Plug 'luochen1990/rainbow'
+Plug 'Townk/vim-autoclose'
+Plug 'tpope/vim-surround'
+Plug 'tomtom/tcomment_vim'
+Plug 'bronson/vim-trailing-whitespace'
+Plug 'Yggdroot/indentLine'
 
 " ---file management
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
@@ -26,18 +35,6 @@ Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 Plug 'rhysd/conflict-marker.vim'
-
-" ---developement
-Plug 'Townk/vim-autoclose'
-Plug 'cscope.vim'
-Plug 'tomtom/tcomment_vim'
-Plug 'vim-airline/vim-airline', {'tag': 'v0.7'}
-Plug 'fweep/vim-tabber'
-Plug 'luochen1990/rainbow'
-Plug 'Yggdroot/indentLine'
-Plug 'bronson/vim-trailing-whitespace'
-Plug 'majutsushi/tagbar'
-Plug 'tpope/vim-surround'
 
 " ---syntax highlight and detection
 "  overall
@@ -82,26 +79,26 @@ call plug#end()
 
 
 "---------------------General setting---------------------
-syntax on					"syntax highlight
-set nu                      "顯示行號
-set cursorline              "顯示目前的游標位置
-set bg=dark                 "顯示不同的底色色調
-set ruler                   "顯示最後一行的狀態
-set hlsearch                "設定高亮度顯示搜尋結果
-set incsearch               "搜尋時立即跳到符合的pattern
-set confirm                 "操作過程有衝突時，以明確的文字來詢問
-set history=30              "保留 30 個使用過的指令
-set t_Co=256                "Explicitly tell Vim that the terminal supports 256 colors
+syntax on					" syntax highlight
+set nu                      " 顯示行號
+set cursorline              " 顯示目前的游標位置
+set bg=dark                 " 顯示不同的底色色調
+set ruler                   " 顯示最後一行的狀態
+set hlsearch                " 設定高亮度顯示搜尋結果
+set incsearch               " 搜尋時立即跳到符合的pattern
+set confirm                 " 操作過程有衝突時，以明確的文字來詢問
+set history=30              " 保留 30 個使用過的指令
+set t_Co=256                " Explicitly tell Vim that the terminal supports 256 colors
 
-set autoindent				"自動縮排
-set cindent                 "設置C/C++方式自動對齊
-set smartindent             "設定 smartindent
-set shiftwidth=4			"設定縮排寬度 = 4
-set backspace=2				"可隨時用倒退鍵刪除
-set tabstop=4               "設置Tab寬度
-set softtabstop=4           "設置按退格鍵時可以一次刪除4個空格
-set smarttab                "根據檔案中其他地方的空格來判斷一個tab是多少個空格
-set expandtab               "將Tab鍵自動轉換成空格,真正需要Tab鍵時使用[Ctrl + V + Tab]
+set autoindent
+set cindent
+set smartindent
+set shiftwidth=4			" 設定縮排寬度 = 4
+set backspace=2				" 可隨時用倒退鍵刪除
+set tabstop=4               " 設置Tab寬度
+set softtabstop=4           " 設置按退格鍵時可以一次刪除4個空格
+set smarttab                " 根據檔案中其他地方的空格來判斷一個tab是多少個空格
+set expandtab               " 將Tab鍵自動轉換成空格,真正需要Tab鍵時使用[Ctrl + V + Tab]
 
 " Set up tab autocomplete in ex mode
 set wildmenu
@@ -112,7 +109,8 @@ autocmd FileType make setlocal noexpandtab
 
 autocmd Filetype html setlocal ts=2 sts=2 sw=2
 autocmd Filetype javascript setlocal ts=2 sts=2 sw=2
-au BufNewFile,BufRead *.html,*.htm,*.shtml,*.stm,*.hbs,*.handlebars setlocal ts=2 sts=2 sw=2
+autocmd BufNewFile,BufRead *.html,*.htm,*.shtml,*.stm,*.hbs,*.handlebars setlocal ts=2 sts=2 sw=2 ft=jinja
+
 
 "---------------------split navigations
 nnoremap <C-J> <C-W><C-J>
@@ -132,17 +130,20 @@ set laststatus=2   " Always show the statusline
 nmap <F2> :NERDTreeToggle<CR>
 
 " 開啟spell checking
-nmap <F7> :setlocal spell!<cr>
+nmap <F7> :setlocal spell!<CR>
+
+" Toggle ALE
+nmap <F8> :ALEToggle<CR>
+
+" 開啟TaskList
+nmap <F9> :ToggleTaskList<CR>
 
 " 開啟tagbar
 nmap <F10> :TagbarToggle<CR>
 
-" 開啟TaskList
-nmap <F9> :TaskList<CR>
-
 " comment lines
-map ` :TComment<cr>
-vmap ` :TComment<cr>gv
+map ` :TComment<CR>
+vmap ` :TComment<CR>gv
 
 
 "---------------------plug-in setting---------------------
@@ -191,6 +192,7 @@ let g:rainbow_active = 1
     \       'css': 0,
     \   }
     \}
+
 
 " ---UltiSnips
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
@@ -251,9 +253,6 @@ autocmd filetype html,css,htmlm4 EmmetInstall
 " ---tabber
 set tabline=%!tabber#TabLine()
 
-" ---tasklist
-let g:tlTokenList = ["TODO", "FIXME", "XXX"]
-
 " ---vim-javascript
 let g:javascript_plugin_flow = 1
 
@@ -267,6 +266,9 @@ let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_match_window = 'bottom,order:ttb'
 let g:ctrlp_switch_buffer = 0
 let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
+
+" ---TaskList
+let g:tlTokenList = ["FIXME", "TODO", "XXX"]
 
 " ---theme
 colorscheme desert
