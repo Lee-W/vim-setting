@@ -223,11 +223,11 @@ let g:clang_format#style_options = {
 let g:pymode_python = 'python3'
 let g:pymode_indent = 1
 let g:pymode_motion = 1
-let g:pymode_options_max_line_length = 119
 let g:pymode_rope = 0
-let g:pymode_lint_checkers = ['pyflakes', 'pylint', 'pep8']
+let g:pymode_options_max_line_length = 119
+let g:pymode_lint_checkers = ['pylint', 'pyflakes', 'pep8']
 " Note that pymode_lint_ignore content cannot contain space
-let g:pymode_lint_ignore = "C0111,W0621,E501,F0002"
+let g:pymode_lint_ignore = "F0002"
 " au CompleteDone * pclose
 
 
