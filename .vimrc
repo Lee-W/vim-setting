@@ -157,7 +157,7 @@ autocmd BufRead *.txt,*.md,*.tex setlocal spell
 
 " ---ale
 let g:ale_linters = {
-\   'python': ['pylint'],
+\   'python': [''],
 \}
 let g:ale_python_pylint_options = "--rcfile ~/.pylintrc --init-hook='import sys; sys.path.append(\".\")'"
 let g:ale_lint_on_text_changed = 'never'
