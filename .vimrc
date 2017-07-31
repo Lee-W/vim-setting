@@ -7,9 +7,8 @@ call plug#begin('~/.vim/plugged')
 
 " ---utility
 Plug 'Lokaltog/vim-easymotion'
-Plug 'vimspell', {'for': ['txt', 'md', 'tex']}
 Plug 'kien/ctrlp.vim'
-Plug 'cscope.vim'
+Plug 'vim-scripts/vimspell', {'for': ['txt', 'md', 'tex']}
 Plug 'liangfeng/TaskList.vim'
 Plug 'majutsushi/tagbar'
 Plug 'fweep/vim-tabber'
@@ -54,14 +53,14 @@ Plug 'octol/vim-cpp-enhanced-highlight', {'for': ['cpp']}
 Plug 'othree/html5.vim', {'for': ['*.html', '*.htm']}
 Plug 'othree/html5-syntax.vim', {'for': ['*.html', '*.htm']}
 Plug 'hail2u/vim-css3-syntax', {'for': ['css']}
-Plug 'mattn/emmet-vim'
+Plug 'mattn/emmet-vim', {'for': ['*.html', '*.htm', 'css']}
 Plug 'pangloss/vim-javascript', {'for': ['javascript']}
 Plug 'othree/yajs.vim', {'for': ['javascript']}
 Plug 'othree/javascript-libraries-syntax.vim', {'for': ['javascript']}
 Plug 'nono/vim-handlebars', {'for': ['*.html', '*.htm', '*.hbs', '*.handlebars']}
 Plug 'elzr/vim-json', {'for': ['*.json']}
 " octave
-Plug 'octave.vim', {'for': ['*.m']}
+Plug 'vim-scripts/octave.vim', {'for': ['*.m']}
 
 " ---theme
 Plug 'fugalh/desert.vim'
@@ -70,6 +69,7 @@ Plug 'fugalh/desert.vim'
 
 " ---plugin not installed
 " Plug 'scrooloose/syntastic'
+" Plug 'vim-scripts/cscope.vim'
 " Plug 'michaeljsmith/vim-indent-object'
 " Plug 'terryma/vim-multiple-cursors'
 " Plug 'chusiang/vim-sdcv'
@@ -153,7 +153,6 @@ highlight clear SignColumn " For the same appearance as your line number column 
 
 " ---vim-spell
 set spelllang=en
-autocmd BufRead *.txt,*.md,*.tex setlocal spell
 
 " ---ale
 let g:ale_linters = {
@@ -161,7 +160,6 @@ let g:ale_linters = {
 \}
 let g:ale_python_pylint_options = "--rcfile ~/.pylintrc --init-hook='import sys; sys.path.append(\".\")'"
 let g:ale_lint_on_text_changed = 'never'
-
 
 " --- rainbow
 let g:rainbow_active = 1
@@ -193,19 +191,16 @@ let g:rainbow_active = 1
     \   }
     \}
 
-
 " ---UltiSnips
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
 
 " ---c.vim
 filetype plugin on
-"disable the header when creatin a C/C++ file
 let g:C_InsertFileHeader = 'no'
 let g:C_CFlags = '-g -O0 -c'
 let g:C_LFlags = '-g -O0'
@@ -225,11 +220,10 @@ let g:pymode_indent = 1
 let g:pymode_motion = 1
 let g:pymode_rope = 0
 let g:pymode_options_max_line_length = 119
-let g:pymode_lint_checkers = ['pylint', 'pyflakes', 'pep8']
+let g:pymode_lint_checkers = ['pylint', 'pep8']
 " Note that pymode_lint_ignore content cannot contain space
 let g:pymode_lint_ignore = "F0002"
 " au CompleteDone * pclose
-
 
 " ---jedi-vim
 let g:jedi#popup_on_dot = 1
@@ -260,7 +254,7 @@ let g:javascript_plugin_flow = 1
 let g:used_javascript_libs = 'jquery'
 
 " ---ctrlp
- set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
 
 let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_match_window = 'bottom,order:ttb'
