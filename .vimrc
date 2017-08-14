@@ -12,9 +12,9 @@ Plug 'vim-scripts/vimspell', {'for': ['txt', 'md', 'tex']}
 Plug 'liangfeng/TaskList.vim'
 Plug 'majutsushi/tagbar'
 Plug 'fweep/vim-tabber'
-Plug 'vim-airline/vim-airline', {'tag': 'v0.7'}
+Plug 'vim-airline/vim-airline'
 Plug 'luochen1990/rainbow'
-Plug 'Townk/vim-autoclose'
+Plug 'Raimondi/delimitMate'
 Plug 'tpope/vim-surround'
 Plug 'tomtom/tcomment_vim'
 Plug 'bronson/vim-trailing-whitespace'
@@ -24,8 +24,7 @@ Plug 'Yggdroot/indentLine'
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
 
 " ---autocomplete
-Plug 'vim-scripts/L9'
-Plug 'othree/vim-autocomplpop'
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --all' }
 
 " ---snippets
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
@@ -74,7 +73,9 @@ Plug 'fugalh/desert.vim'
 " Plug 'terryma/vim-multiple-cursors'
 " Plug 'chusiang/vim-sdcv'
 " Plug 'lervag/vim-latex'
-"
+" Plug 'vim-scripts/L9'
+" Plug 'othree/vim-autocomplpop'
+
 call plug#end()
 
 
@@ -89,6 +90,7 @@ set incsearch               " 搜尋時立即跳到符合的pattern
 set confirm                 " 操作過程有衝突時，以明確的文字來詢問
 set history=30              " 保留 30 個使用過的指令
 set t_Co=256                " Explicitly tell Vim that the terminal supports 256 colors
+set laststatus=2            " Always show the statusline
 
 set autoindent
 set cindent
@@ -100,6 +102,10 @@ set softtabstop=4           " 設置按退格鍵時可以一次刪除4個空格
 set smarttab                " 根據檔案中其他地方的空格來判斷一個tab是多少個空格
 set expandtab               " 將Tab鍵自動轉換成空格,真正需要Tab鍵時使用[Ctrl + V + Tab]
 
+" Encoding
+set encoding=utf-8
+set fileencodings=utf-8,cp950,big5
+
 " Set up tab autocomplete in ex mode
 set wildmenu
 set wildmode=full
@@ -107,23 +113,14 @@ set wildmode=full
 " disable expandtab when editing makefile
 autocmd FileType make setlocal noexpandtab
 
-autocmd Filetype html setlocal ts=2 sts=2 sw=2
-autocmd Filetype javascript setlocal ts=2 sts=2 sw=2
-autocmd BufNewFile,BufRead *.html,*.htm,*.shtml,*.stm,*.hbs,*.handlebars setlocal ts=2 sts=2 sw=2 ft=jinja
-
+autocmd Filetype html,javascript setlocal ts=2 sts=2 sw=2
+autocmd BufNewFile,BufRead *.html,*.hbs,*.handlebars setlocal filetype=html.jinja
 
 "---------------------split navigations
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
-
-"---------------------Encoding---------------------
-set encoding=utf-8
-set fileencodings=utf-8,cp950,big5
-
-"---------------------Status line---------------------
-set laststatus=2   " Always show the statusline
 
 "---------------------key binding---------------------
 " 開始NERDTree
@@ -147,19 +144,25 @@ vmap ` :TComment<CR>gv
 
 
 "---------------------plug-in setting---------------------
-" --- vim-gitgutter
-let g:gitgutter_enabled = 1
-highlight clear SignColumn " For the same appearance as your line number column "
-
 " ---vim-spell
 set spelllang=en
 
-" ---ale
-let g:ale_linters = {
-\   'python': [''],
-\}
-let g:ale_python_pylint_options = "--rcfile ~/.pylintrc --init-hook='import sys; sys.path.append(\".\")'"
-let g:ale_lint_on_text_changed = 'never'
+" ---easymotion
+let g:EasyMotion_leader_key = 'f'
+
+" ---tabber
+set tabline=%!tabber#TabLine()
+
+" ---TaskList
+let g:tlTokenList = ["FIXME", "TODO", "XXX"]
+
+" ---ctrlp
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
+
+let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_match_window = 'bottom,order:ttb'
+let g:ctrlp_switch_buffer = 0
+let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
 
 " --- rainbow
 let g:rainbow_active = 1
@@ -191,13 +194,56 @@ let g:rainbow_active = 1
     \   }
     \}
 
-" ---UltiSnips
-" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-" If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
+" --- vim-gitgutter
+let g:gitgutter_enabled = 1
+highlight clear SignColumn " For the same appearance as your line number column "
+
+" ---YouCompleteMe
+let g:ycm_python_binary_path = 'python'
+nnoremap <leader>jd :YcmCompleter GoTo<CR>
+" make YCM compatible with UltiSnips (using supertab)
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+" let g:SuperTabDefaultCompletionType = '<C-n>'
+
+" ---ultisnips
+" better key bindings for UltiSnipsExpandTrigger
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+
+" ---ale
+let g:ale_linters = {
+\   'python': [''],
+\}
+let g:ale_python_pylint_options = "--rcfile ~/.pylintrc --init-hook='import sys; sys.path.append(\".\")'"
+let g:ale_lint_on_text_changed = 'never'
+
+" ---python-mode
+let g:pymode_python = 'python3'
+let g:pymode_indent = 1
+let g:pymode_motion = 1
+let g:pymode_rope = 0
+let g:pymode_options_max_line_length = 119
+let g:pymode_lint_checkers = ['pylint', 'pep8']
+" Note that pymode_lint_ignore content cannot contain space
+let g:pymode_lint_ignore = "F0002"
+" au CompleteDone * pclose
+
+" ---jedi-vim
+" Use YCM instead
+let g:jedi#completions_enabled = 0
+let g:jedi#popup_on_dot = 1
+let g:jedi#popup_select_first = 1
+let g:jedi#force_py_version = 3
+let g:jedi#completions_command = "<leader>a"
+let g:jedi#show_call_signatures = 1
+" let g:jedi#goto_assignments_command = "<leader>g"
+" let g:jedi#goto_definitions_command = "<leader>d"
+" let g:jedi#documentation_command = "K"
+" let g:jedi#usages_command = "<leader>n"
+" let g:jedi#rename_command = "<leader>r"
+" autocmd FileType python setlocal completeopt-=preview
 
 " ---c.vim
 filetype plugin on
@@ -214,55 +260,11 @@ let g:clang_format#style_options = {
             \ "Standard" : "C++11",
             \ "BreakBeforeBraces" : "Stroustrup"}
 
-" ---python-mode
-let g:pymode_python = 'python3'
-let g:pymode_indent = 1
-let g:pymode_motion = 1
-let g:pymode_rope = 0
-let g:pymode_options_max_line_length = 119
-let g:pymode_lint_checkers = ['pylint', 'pep8']
-" Note that pymode_lint_ignore content cannot contain space
-let g:pymode_lint_ignore = "F0002"
-" au CompleteDone * pclose
-
-" ---jedi-vim
-let g:jedi#popup_on_dot = 1
-let g:jedi#popup_select_first = 1
-let g:jedi#force_py_version = 3
-let g:jedi#completions_command = "<leader>a"
-let g:jedi#show_call_signatures = 1
-" let g:jedi#goto_assignments_command = "<leader>g"
-" let g:jedi#goto_definitions_command = "<leader>d"
-" let g:jedi#documentation_command = "K"
-" let g:jedi#usages_command = "<leader>n"
-" let g:jedi#rename_command = "<leader>r"
-" autocmd FileType python setlocal completeopt-=preview
-
-" ---easymotion
-let g:EasyMotion_leader_key = 'f'
-
-" ---emmet-vim
-autocmd filetype html,css,htmlm4 EmmetInstall
-
-" ---tabber
-set tabline=%!tabber#TabLine()
-
 " ---vim-javascript
 let g:javascript_plugin_flow = 1
 
 " ---javascript-libraries-syntax.vim
 let g:used_javascript_libs = 'jquery'
-
-" ---ctrlp
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
-
-let g:ctrlp_working_path_mode = 'ra'
-let g:ctrlp_match_window = 'bottom,order:ttb'
-let g:ctrlp_switch_buffer = 0
-let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
-
-" ---TaskList
-let g:tlTokenList = ["FIXME", "TODO", "XXX"]
 
 " ---theme
 colorscheme desert
