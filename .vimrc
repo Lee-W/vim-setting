@@ -115,6 +115,7 @@ autocmd FileType make setlocal noexpandtab
 
 autocmd Filetype html,javascript setlocal ts=2 sts=2 sw=2
 autocmd BufNewFile,BufRead *.html,*.hbs,*.handlebars setlocal filetype=html.jinja ts=2 sts=2 sw=2
+autocmd FileType python setlocal omnifunc=python3complete#Complete
 
 "---------------------split navigations
 nnoremap <C-J> <C-W><C-J>
