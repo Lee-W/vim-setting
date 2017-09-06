@@ -227,6 +227,7 @@ let g:pymode_motion = 1
 let g:pymode_rope = 0
 let g:pymode_options_max_line_length = 119
 let g:pymode_lint_checkers = ['pylint', 'pep8']
+let g:pymode_lint_sort = ['E', 'C', 'W', 'R', 'I', 'F']
 " Note that pymode_lint_ignore content cannot contain space
 let g:pymode_lint_ignore = "F0002"
 " au CompleteDone * pclose
