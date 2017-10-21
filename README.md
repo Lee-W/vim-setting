@@ -12,11 +12,12 @@ The snippets directory is for my custom snippets.
     cd vim-setting 
     cp .vimrc ~/
     ```
-2. Start vi and it will automatically install `vundle` (package management for vim)  
+2. Install `ag` and `fzf`
+3. Start vi and it will automatically install `vim-plug` (package management for vim)  
 It might display plenty of *error message* since there are settings for plug-in that not yet been installed.  
 *You can simply ignore them*  
 3. Restart vi and install packages  
-Enter the command `:BundleInstall` in normal mode after you start vi  
+Enter the command `:PlugInstall` in normal mode after you start vi  
 4. Restart vi again  
 5. Done!  
 6. \(Optional\) Copy the snippets I define into snippets/  
@@ -27,17 +28,7 @@ Enter the command `:BundleInstall` in normal mode after you start vi
 - NERDTree  
     `<F2>`: Toogle NERDTree
 
-### Auto Complete
-- L9  
-    dependency for vim-autocomplete
-- vim-autocomplpop
-
 ### Snippets
-- vim-addon-mw-utilsi  
-    dependency for vim-snipmate
-- tlib_vim  
-    dependency for vim-snipmate
-- vim-snipmate
 - vim-snippets
 
 ### Git
@@ -46,7 +37,6 @@ Enter the command `:BundleInstall` in normal mode after you start vi
 ### Development
 - vim-autoclose  
     matching brackets e.g. {}
-- cscope.vim
 - tcomment_vim  
     *`* : comment out all the selected words
 - vim-airline
@@ -68,7 +58,6 @@ Enter the command `:BundleInstall` in normal mode after you start vi
     automatically check syntax error
 - python-mode  
     整合各種python套件
-- vim-django-support
 - jedi-vim  
     python autocomplete
 - c.vim
@@ -78,14 +67,8 @@ Enter the command `:BundleInstall` in normal mode after you start vi
 - cpp-vim  
     strengthen c++ syntax highlight
 - vim-cpp-enhanced-highlight
-- javacomplete  
-    omnicomplete for java
 - html5.vim  
     html5 syntax highlight
-- vim-css3-syntax  
-    css 3 syntax highlight
-- vim-javascript-syntax  
-    javascript syntax highlight
 - emmet-vim  
     zen coding
 - vim-markdown  
@@ -96,7 +79,7 @@ Enter the command `:BundleInstall` in normal mode after you start vi
     快速搜尋文字並移動
 - vim-multiple-cursors  
     如同sublime支援多重游標
-    主要用法是在normal mode按ctrl + n ，再選取，最後再按一次ctrl + n
+    在normal mode按ctrl + n ，再選取，最後再按一次ctrl + n
 - vim-sdcv  
     use sdcv to search vocabulary
     `<F3>` : search
@@ -105,15 +88,6 @@ Enter the command `:BundleInstall` in normal mode after you start vi
 
 ### Theme
 - desert
-- tomorrow-theme-vim  
-    this is a mirror for vundle/neobundle user and will not update as the original author update
-- molokai
 
-### Not using
-- vimwiki
-- vim-fugitive
-- ctrlp.vim  
-    `ctrl` `p`
-
-#Author
+# Author
 [Lee-W](https://github.com/Lee-W/)
