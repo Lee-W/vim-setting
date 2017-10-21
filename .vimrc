@@ -7,7 +7,8 @@ call plug#begin('~/.vim/plugged')
 
 " ---utility
 Plug 'Lokaltog/vim-easymotion'
-Plug 'kien/ctrlp.vim'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 Plug 'vim-scripts/vimspell', {'for': ['txt', 'md', 'tex']}
 Plug 'liangfeng/TaskList.vim'
 Plug 'majutsushi/tagbar'
@@ -19,6 +20,7 @@ Plug 'tpope/vim-surround'
 Plug 'tomtom/tcomment_vim'
 Plug 'bronson/vim-trailing-whitespace'
 Plug 'Yggdroot/indentLine'
+Plug 'tpope/vim-repeat'
 
 " ---file management
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
@@ -37,6 +39,7 @@ Plug 'rhysd/conflict-marker.vim'
 " ---syntax highlight and detection
 "  overall
 Plug 'w0rp/ale'
+Plug 'sheerun/vim-polyglot'
 "  python
 Plug 'klen/python-mode', {'for': ['python']}
 Plug 'davidhalter/jedi-vim', {'for': ['python']}
@@ -47,19 +50,13 @@ Plug 'tshirtman/vim-cython', {'for': ['pyx']}
 Plug 'Lee-W/c.vim', {'for' : ['cpp', 'c'] }
 Plug 'vim-jp/cpp-vim', {'for': ['cpp']}
 Plug 'rhysd/vim-clang-format', {'for': ['cpp', 'c']}
-Plug 'octol/vim-cpp-enhanced-highlight', {'for': ['cpp']}
 "  Web
 Plug 'othree/html5.vim', {'for': ['*.html', '*.htm']}
-Plug 'othree/html5-syntax.vim', {'for': ['*.html', '*.htm']}
-Plug 'hail2u/vim-css3-syntax', {'for': ['css']}
 Plug 'mattn/emmet-vim', {'for': ['*.html', '*.htm', 'css']}
-Plug 'pangloss/vim-javascript', {'for': ['javascript']}
 Plug 'othree/yajs.vim', {'for': ['javascript']}
 Plug 'othree/javascript-libraries-syntax.vim', {'for': ['javascript']}
 Plug 'nono/vim-handlebars', {'for': ['*.html', '*.htm', '*.hbs', '*.handlebars']}
 Plug 'elzr/vim-json', {'for': ['*.json']}
-" octave
-Plug 'vim-scripts/octave.vim', {'for': ['*.m']}
 
 " ---theme
 Plug 'fugalh/desert.vim'
@@ -72,9 +69,6 @@ Plug 'fugalh/desert.vim'
 " Plug 'michaeljsmith/vim-indent-object'
 " Plug 'terryma/vim-multiple-cursors'
 " Plug 'chusiang/vim-sdcv'
-" Plug 'lervag/vim-latex'
-" Plug 'vim-scripts/L9'
-" Plug 'othree/vim-autocomplpop'
 
 call plug#end()
 
@@ -157,13 +151,14 @@ set tabline=%!tabber#TabLine()
 " ---TaskList
 let g:tlTokenList = ["FIXME", "TODO", "XXX"]
 
-" ---ctrlp
+" ---fzf
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
 
-let g:ctrlp_working_path_mode = 'ra'
-let g:ctrlp_match_window = 'bottom,order:ttb'
-let g:ctrlp_switch_buffer = 0
-let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
+nmap <C-P> :FZF<CR>
+nmap ; :Buffers<CR>
+
+let g:fzf_buffers_jump = 1
+
 
 " --- rainbow
 let g:rainbow_active = 1
@@ -227,7 +222,7 @@ let g:pymode_motion = 1
 let g:pymode_rope = 0
 let g:pymode_options_max_line_length = 119
 let g:pymode_lint_checkers = ['pylint', 'pep8']
-let g:pymode_lint_sort = ['E', 'C', 'W', 'R', 'I', 'F']
+let g:pymode_lint_sort = ['E', 'W', 'C', 'R', 'I', 'F']
 " Note that pymode_lint_ignore content cannot contain space
 let g:pymode_lint_ignore = "F0002"
 " au CompleteDone * pclose
@@ -262,8 +257,9 @@ let g:clang_format#style_options = {
             \ "Standard" : "C++11",
             \ "BreakBeforeBraces" : "Stroustrup"}
 
-" ---vim-javascript
-let g:javascript_plugin_flow = 1
+
+" ---vim-polyglot
+let g:polyglot_disabled = ['python', 'pyton-compiler']
 
 " ---javascript-libraries-syntax.vim
 let g:used_javascript_libs = 'jquery'
