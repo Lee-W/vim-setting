@@ -26,7 +26,7 @@ Plug 'tpope/vim-repeat'
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
 
 " ---autocomplete
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py --all' }
+Plug 'Valloric/YouCompleteMe', { 'do': './install.sh --clang-completer --system-libclang' }
 
 " ---snippets
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
@@ -41,7 +41,7 @@ Plug 'rhysd/conflict-marker.vim'
 Plug 'w0rp/ale'
 Plug 'sheerun/vim-polyglot'
 "  python
-Plug 'klen/python-mode', {'for': ['python']}
+Plug 'python-mode/python-mode', {'for': ['python']}
 Plug 'davidhalter/jedi-vim', {'for': ['python']}
 Plug 'lepture/vim-jinja', {'for': ['*.html', '*.htm']}
 Plug 'Glench/Vim-Jinja2-Syntax', {'for': ['*.html', '*.htm']}
@@ -197,6 +197,7 @@ highlight clear SignColumn " For the same appearance as your line number column 
 " ---YouCompleteMe
 let g:ycm_python_binary_path = 'python'
 nnoremap <leader>jd :YcmCompleter GoTo<CR>
+nnoremap <leader>jr :YcmCompleter GoToReferences<CR>
 " make YCM compatible with UltiSnips (using supertab)
 let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
