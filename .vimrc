@@ -25,8 +25,11 @@ Plug 'tpope/vim-repeat'
 " ---file management
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
 
+
 " ---autocomplete
-Plug 'Valloric/YouCompleteMe', { 'do': './install.sh --clang-completer --system-libclang' }
+Plug 'vim-scripts/L9'
+Plug 'othree/vim-autocomplpop'
+
 
 " ---snippets
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
@@ -195,12 +198,12 @@ let g:gitgutter_enabled = 1
 highlight clear SignColumn " For the same appearance as your line number column "
 
 " ---YouCompleteMe
-let g:ycm_python_binary_path = 'python'
-nnoremap <leader>jd :YcmCompleter GoTo<CR>
-nnoremap <leader>jr :YcmCompleter GoToReferences<CR>
+" let g:ycm_python_binary_path = 'python'
+" nnoremap <leader>jd :YcmCompleter GoTo<CR>
+" nnoremap <leader>jr :YcmCompleter GoToReferences<CR>
 " make YCM compatible with UltiSnips (using supertab)
-let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+" let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+" let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 " let g:SuperTabDefaultCompletionType = '<C-n>'
 
 " ---ultisnips
@@ -230,7 +233,7 @@ let g:pymode_lint_ignore = "F0002"
 
 " ---jedi-vim
 " Use YCM instead
-let g:jedi#completions_enabled = 0
+let g:jedi#completions_enabled = 1
 let g:jedi#popup_on_dot = 1
 let g:jedi#popup_select_first = 1
 let g:jedi#force_py_version = 3
