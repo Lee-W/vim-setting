@@ -5,6 +5,7 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
+
 " ---utility
 Plug 'Lokaltog/vim-easymotion'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -21,6 +22,7 @@ Plug 'tomtom/tcomment_vim'
 Plug 'bronson/vim-trailing-whitespace'
 Plug 'Yggdroot/indentLine'
 Plug 'tpope/vim-repeat'
+
 
 " ---file management
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
@@ -46,6 +48,7 @@ Plug 'sheerun/vim-polyglot'
 "  python
 Plug 'python-mode/python-mode', {'for': ['python']}
 Plug 'davidhalter/jedi-vim', {'for': ['python']}
+Plug 'mitsuhiko/vim-python-combined', {'for': ['python']}
 Plug 'lepture/vim-jinja', {'for': ['*.html', '*.htm']}
 Plug 'Glench/Vim-Jinja2-Syntax', {'for': ['*.html', '*.htm']}
 Plug 'tshirtman/vim-cython', {'for': ['pyx']}
@@ -65,6 +68,9 @@ Plug 'elzr/vim-json', {'for': ['*.json']}
 Plug 'fugalh/desert.vim'
 " Plug 'd11wtq/tomorrow-theme-vim'
 " Plug 'tomasr/molokai'
+
+
+Plug 'ryanoasis/vim-devicons'
 
 " ---plugin not installed
 " Plug 'scrooloose/syntastic'
@@ -154,6 +160,9 @@ set tabline=%!tabber#TabLine()
 " ---TaskList
 let g:tlTokenList = ["FIXME", "TODO", "XXX"]
 
+" ---airline
+let g:airline_powerline_fonts = 1
+
 " ---fzf
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
 
@@ -162,8 +171,7 @@ nmap ; :Buffers<CR>
 
 let g:fzf_buffers_jump = 1
 
-
-" --- rainbow
+" ---rainbow
 let g:rainbow_active = 1
    let g:rainbow_conf = {
     \   'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
@@ -225,7 +233,7 @@ let g:pymode_indent = 1
 let g:pymode_motion = 1
 let g:pymode_rope = 0
 let g:pymode_options_max_line_length = 119
-let g:pymode_lint_checkers = ['pylint', 'pep8']
+let g:pymode_lint_checkers = ['pylint', 'flake8']
 let g:pymode_lint_sort = ['E', 'W', 'C', 'R', 'I', 'F']
 " Note that pymode_lint_ignore content cannot contain space
 let g:pymode_lint_ignore = "F0002"
