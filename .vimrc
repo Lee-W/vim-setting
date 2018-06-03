@@ -222,7 +222,7 @@ let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
 " ---ale
 let g:ale_linters = {
-\   'python': [''],
+\   'python': ['pylint', 'flake8'],
 \}
 let g:ale_python_pylint_options = "--rcfile ~/.pylintrc --init-hook='import sys; sys.path.append(\".\")'"
 let g:ale_lint_on_text_changed = 'never'
