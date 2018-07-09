@@ -46,7 +46,7 @@ Plug 'rhysd/conflict-marker.vim'
 Plug 'w0rp/ale'
 Plug 'sheerun/vim-polyglot'
 "  python
-Plug 'python-mode/python-mode', {'for': ['python']}
+Plug 'python-mode/python-mode', {'for': ['python'], 'branch': 'develop'}
 Plug 'davidhalter/jedi-vim', {'for': ['python']}
 Plug 'mitsuhiko/vim-python-combined', {'for': ['python']}
 Plug 'lepture/vim-jinja', {'for': ['*.html', '*.htm']}
