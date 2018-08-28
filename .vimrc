@@ -222,7 +222,7 @@ let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
 " ---ale
 let g:ale_linters = {
-\   'python': ['pylint', 'flake8'],
+\   'python': ['pylint'],
 \}
 let g:ale_python_pylint_options = "--rcfile ~/.pylintrc --init-hook='import sys; sys.path.append(\".\")'"
 let g:ale_lint_on_text_changed = 'never'
@@ -232,11 +232,12 @@ let g:pymode_python = 'python3'
 let g:pymode_indent = 1
 let g:pymode_motion = 1
 let g:pymode_rope = 0
+let g:pymode_folding = 1
 let g:pymode_options_max_line_length = 119
-let g:pymode_lint_checkers = ['pylint', 'flake8']
-let g:pymode_lint_sort = ['E', 'W', 'C', 'R', 'I', 'F']
+" let g:pymode_lint_checkers = ['pylint']
+" let g:pymode_lint_sort = ['E', 'W', 'C', 'R', 'I', 'F']
 " Note that pymode_lint_ignore content cannot contain space
-let g:pymode_lint_ignore = "F0002"
+let g:pymode_lint_ignore = ["F0002"]
 " au CompleteDone * pclose
 
 " ---jedi-vim
