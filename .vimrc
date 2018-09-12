@@ -237,7 +237,7 @@ let g:pymode_options_max_line_length = 119
 let g:pymode_lint_checkers = ['pylint']
 let g:pymode_lint_sort = ['E', 'W', 'C', 'R', 'I', 'F']
 " Note that pymode_lint_ignore content cannot contain space
-let g:pymode_lint_ignore = "F0002"
+let g:pymode_lint_ignore = ["F0002"]
 " au CompleteDone * pclose
 
 " ---jedi-vim
