@@ -147,6 +147,9 @@ map ` :TComment<CR>
 vmap ` :TComment<CR>gv
 
 
+nmap <C-S-F> :Ag<CR>
+
+
 "---------------------plug-in setting---------------------
 " ---vim-spell
 set spelllang=en
