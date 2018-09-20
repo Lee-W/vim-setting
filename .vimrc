@@ -125,6 +125,7 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
+nnoremap <C-H> <C-W><C-H>
 
 "---------------------key binding---------------------
 " 開始NERDTree
@@ -146,8 +147,8 @@ nmap <F10> :TagbarToggle<CR>
 map ` :TComment<CR>
 vmap ` :TComment<CR>gv
 
-
 nmap <C-S-F> :Ag<CR>
+inoremap jj <esc>
 
 
 "---------------------plug-in setting---------------------
@@ -237,8 +238,8 @@ let g:pymode_motion = 1
 let g:pymode_rope = 0
 let g:pymode_folding = 1
 let g:pymode_options_max_line_length = 119
-let g:pymode_lint_checkers = ['pylint']
-let g:pymode_lint_sort = ['E', 'W', 'C', 'R', 'I', 'F']
+" let g:pymode_lint_checkers = ['pylint']
+" let g:pymode_lint_sort = ['E', 'W', 'C', 'R', 'I', 'F']
 " Note that pymode_lint_ignore content cannot contain space
 let g:pymode_lint_ignore = ["F0002"]
 " au CompleteDone * pclose
