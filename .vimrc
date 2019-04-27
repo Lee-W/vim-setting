@@ -63,6 +63,8 @@ Plug 'othree/yajs.vim', {'for': ['javascript']}
 Plug 'othree/javascript-libraries-syntax.vim', {'for': ['javascript']}
 Plug 'nono/vim-handlebars', {'for': ['*.html', '*.htm', '*.hbs', '*.handlebars']}
 Plug 'elzr/vim-json', {'for': ['*.json']}
+" YAML
+Plug 'stephpy/vim-yaml', {'for': ['*.yml']}
 
 " ---theme
 Plug 'fugalh/desert.vim'
