@@ -27,11 +27,14 @@ Plug 'tpope/vim-repeat'
 " ---file management
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
 
-
 " ---autocomplete
-Plug 'vim-scripts/L9'
-Plug 'othree/vim-autocomplpop'
-
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  let g:deoplete#enable_at_startup = 1
+else
+  Plug 'vim-scripts/L9'
+  Plug 'othree/vim-autocomplpop'
+endif
 
 " ---snippets
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
@@ -49,7 +52,6 @@ Plug 'w0rp/ale'
 Plug 'sheerun/vim-polyglot'
 "  python
 Plug 'python-mode/python-mode', {'for': ['python'], 'branch': 'develop'}
-Plug 'davidhalter/jedi-vim', {'for': ['python']}
 Plug 'mitsuhiko/vim-python-combined', {'for': ['python']}
 Plug 'lepture/vim-jinja', {'for': ['*.html', '*.htm']}
 Plug 'Glench/Vim-Jinja2-Syntax', {'for': ['*.html', '*.htm']}
@@ -65,13 +67,13 @@ Plug 'othree/yajs.vim', {'for': ['javascript']}
 Plug 'othree/javascript-libraries-syntax.vim', {'for': ['javascript']}
 Plug 'nono/vim-handlebars', {'for': ['*.html', '*.htm', '*.hbs', '*.handlebars']}
 Plug 'elzr/vim-json', {'for': ['*.json']}
+" YAML
+Plug 'stephpy/vim-yaml', {'for': ['*.yml']}
 
 
 " ---theme
 Plug 'fugalh/desert.vim'
 Plug 'ryanoasis/vim-devicons'
-" Plug 'd11wtq/tomorrow-theme-vim'
-" Plug 'tomasr/molokai'
 
 " ---plugin not installed
 " Plug 'scrooloose/syntastic'
@@ -249,12 +251,12 @@ let g:pymode_lint_ignore = ["F0002"]
 
 " ---jedi-vim
 " Use YCM instead
-let g:jedi#completions_enabled = 1
-let g:jedi#popup_on_dot = 1
-let g:jedi#popup_select_first = 1
-let g:jedi#force_py_version = 3
-let g:jedi#completions_command = "<leader>a"
-let g:jedi#show_call_signatures = 1
+" let g:jedi#completions_enabled = 1
+" let g:jedi#popup_on_dot = 1
+" let g:jedi#popup_select_first = 1
+" let g:jedi#force_py_version = 3
+" let g:jedi#completions_command = "<leader>a"
+" let g:jedi#show_call_signatures = 1
 " let g:jedi#goto_assignments_command = "<leader>g"
 " let g:jedi#goto_definitions_command = "<leader>d"
 " let g:jedi#documentation_command = "K"
