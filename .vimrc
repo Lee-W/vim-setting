@@ -30,6 +30,7 @@ Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
 " ---autocomplete
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  Plug 'zchee/deoplete-jedi'
   let g:deoplete#enable_at_startup = 1
 else
   Plug 'vim-scripts/L9'
@@ -209,15 +210,6 @@ let g:rainbow_active = 1
 let g:gitgutter_enabled = 1
 highlight clear SignColumn " For the same appearance as your line number column "
 
-" ---YouCompleteMe
-" let g:ycm_python_binary_path = 'python'
-" nnoremap <leader>jd :YcmCompleter GoTo<CR>
-" nnoremap <leader>jr :YcmCompleter GoToReferences<CR>
-" make YCM compatible with UltiSnips (using supertab)
-" let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-" let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
-" let g:SuperTabDefaultCompletionType = '<C-n>'
-
 " ---ultisnips
 " better key bindings for UltiSnipsExpandTrigger
 let g:UltiSnipsExpandTrigger = "<tab>"
@@ -238,26 +230,12 @@ let g:pymode_motion = 1
 let g:pymode_rope = 0
 let g:pymode_folding = 1
 let g:pymode_options_max_line_length = 119
-" let g:pymode_lint_checkers = ['pylint']
-" let g:pymode_lint_sort = ['E', 'W', 'C', 'R', 'I', 'F']
+let g:pymode_lint_checkers = ['pylint']
+let g:pymode_lint_sort = ['E', 'W', 'C', 'R', 'I', 'F']
 " Note that pymode_lint_ignore content cannot contain space
 let g:pymode_lint_ignore = ["F0002"]
-" au CompleteDone * pclose
 
-" ---jedi-vim
-" Use YCM instead
-" let g:jedi#completions_enabled = 1
-" let g:jedi#popup_on_dot = 1
-" let g:jedi#popup_select_first = 1
-" let g:jedi#force_py_version = 3
-" let g:jedi#completions_command = "<leader>a"
-" let g:jedi#show_call_signatures = 1
-" let g:jedi#goto_assignments_command = "<leader>g"
-" let g:jedi#goto_definitions_command = "<leader>d"
-" let g:jedi#documentation_command = "K"
-" let g:jedi#usages_command = "<leader>n"
-" let g:jedi#rename_command = "<leader>r"
-" autocmd FileType python setlocal completeopt-=preview
+autocmd FileType python setlocal completeopt-=preview
 
 " ---c.vim
 filetype plugin on
