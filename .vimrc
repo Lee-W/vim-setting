@@ -52,6 +52,7 @@ Plug 'sheerun/vim-polyglot'
 "  python
 Plug 'python-mode/python-mode', {'for': ['python'], 'branch': 'develop'}
 Plug 'mitsuhiko/vim-python-combined', {'for': ['python']}
+Plug 'psf/black', {'for': ['python']}
 Plug 'lepture/vim-jinja', {'for': ['*.html', '*.htm']}
 Plug 'Glench/Vim-Jinja2-Syntax', {'for': ['*.html', '*.htm']}
 Plug 'tshirtman/vim-cython', {'for': ['pyx']}
@@ -218,10 +219,11 @@ let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
 " ---ale
 let g:ale_linters = {
-\   'python': ['pylint'],
+\   'python': ['flake8'],
 \}
-let g:ale_python_pylint_options = "--rcfile ~/.pylintrc --init-hook='import sys; sys.path.append(\".\")'"
+" let g:ale_python_pylint_options = "--rcfile ~/.pylintrc --init-hook='import sys; sys.path.append(\".\")'"
 let g:ale_lint_on_text_changed = 'never'
+let g:ale_python_auto_pipenv=1
 
 " ---python-mode
 let g:pymode_python = 'python3'
@@ -230,10 +232,13 @@ let g:pymode_motion = 1
 let g:pymode_rope = 0
 let g:pymode_folding = 1
 let g:pymode_options_max_line_length = 119
-let g:pymode_lint_checkers = ['pylint']
+" let g:pymode_lint_checkers = ['pylint']
 let g:pymode_lint_sort = ['E', 'W', 'C', 'R', 'I', 'F']
 " Note that pymode_lint_ignore content cannot contain space
 let g:pymode_lint_ignore = ["F0002"]
+
+" ---black
+let g:black_linelength=119
 
 autocmd FileType python setlocal completeopt-=preview
 
