@@ -40,10 +40,12 @@ endif
 " ---snippets
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 
+
 " ---git
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 Plug 'rhysd/conflict-marker.vim'
+
 
 " ---syntax highlight and detection
 "  overall
@@ -69,6 +71,7 @@ Plug 'nono/vim-handlebars', {'for': ['*.html', '*.htm', '*.hbs', '*.handlebars']
 Plug 'elzr/vim-json', {'for': ['*.json']}
 " YAML
 Plug 'stephpy/vim-yaml', {'for': ['*.yml']}
+
 
 " ---theme
 Plug 'fugalh/desert.vim'
@@ -106,6 +109,8 @@ set tabstop=4               " 設置Tab寬度
 set softtabstop=4           " 設置按退格鍵時可以一次刪除4個空格
 set smarttab                " 根據檔案中其他地方的空格來判斷一個tab是多少個空格
 set expandtab               " 將Tab鍵自動轉換成空格,真正需要Tab鍵時使用[Ctrl + V + Tab]
+
+let g:python3_host_prog = 'python'
 
 " Encoding
 set encoding=utf-8
@@ -266,8 +271,6 @@ let g:used_javascript_libs = 'jquery'
 
 " ---theme
 colorscheme desert
-" colorscheme Tomorrow-Night-Eighties
-" colorscheme molokai
 
 "---------------------other---------------------
 " ---set paste
