@@ -23,7 +23,6 @@ Plug 'bronson/vim-trailing-whitespace'
 Plug 'Yggdroot/indentLine'
 Plug 'tpope/vim-repeat'
 
-
 " ---file management
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
 
@@ -40,29 +39,27 @@ endif
 " ---snippets
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 
-
 " ---git
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 Plug 'rhysd/conflict-marker.vim'
 
-
 " ---syntax highlight and detection
-"  overall
+" overall
 Plug 'w0rp/ale'
 Plug 'sheerun/vim-polyglot'
-"  python
+" python
 Plug 'python-mode/python-mode', {'for': ['python'], 'branch': 'develop'}
 Plug 'mitsuhiko/vim-python-combined', {'for': ['python']}
 Plug 'psf/black', {'for': ['python']}
-Plug 'lepture/vim-jinja', {'for': ['*.html', '*.htm']}
-Plug 'Glench/Vim-Jinja2-Syntax', {'for': ['*.html', '*.htm']}
+Plug 'lepture/vim-jinja', {'for': ['*.html', '*.htm', '*.j2', '*.jinja']}
+Plug 'Glench/Vim-Jinja2-Syntax', {'for': ['*.html', '*.htm', '*.j2', '*.jinja']}
 Plug 'tshirtman/vim-cython', {'for': ['pyx']}
-"  C/C++
+" C/C++
 Plug 'Lee-W/c.vim', {'for' : ['cpp', 'c'] }
 Plug 'vim-jp/cpp-vim', {'for': ['cpp']}
 Plug 'rhysd/vim-clang-format', {'for': ['cpp', 'c']}
-"  Web
+" Web
 Plug 'othree/html5.vim', {'for': ['*.html', '*.htm']}
 Plug 'mattn/emmet-vim', {'for': ['*.html', '*.htm', 'css']}
 Plug 'othree/yajs.vim', {'for': ['javascript']}
@@ -71,7 +68,11 @@ Plug 'nono/vim-handlebars', {'for': ['*.html', '*.htm', '*.hbs', '*.handlebars']
 Plug 'elzr/vim-json', {'for': ['*.json']}
 " YAML
 Plug 'stephpy/vim-yaml', {'for': ['*.yml']}
-
+" toml
+Plug 'cespare/vim-toml', {'for': ['*.toml']}
+" markdown
+Plug 'godlygeek/tabular', {'for': ['*.md']}
+Plug 'plasticboy/vim-markdown', {'for': ['*.md']}
 
 " ---theme
 Plug 'fugalh/desert.vim'
@@ -109,8 +110,6 @@ set tabstop=4               " 設置Tab寬度
 set softtabstop=4           " 設置按退格鍵時可以一次刪除4個空格
 set smarttab                " 根據檔案中其他地方的空格來判斷一個tab是多少個空格
 set expandtab               " 將Tab鍵自動轉換成空格,真正需要Tab鍵時使用[Ctrl + V + Tab]
-
-let g:python3_host_prog = 'python'
 
 " Encoding
 set encoding=utf-8
@@ -243,7 +242,6 @@ let g:pymode_lint_sort = ['E', 'W', 'C', 'R', 'I', 'F']
 let g:pymode_lint_ignore = ["F0002"]
 
 " ---black
-let g:black_linelength=119
 
 autocmd FileType python setlocal completeopt-=preview
 
@@ -268,6 +266,9 @@ let g:polyglot_disabled = ['python', 'pyton-compiler']
 
 " ---javascript-libraries-syntax.vim
 let g:used_javascript_libs = 'jquery'
+
+" --- vim-markdown
+let g:vim_markdown_folding_disabled = 1
 
 " ---theme
 colorscheme desert
