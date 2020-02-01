@@ -22,6 +22,7 @@ Plug 'tomtom/tcomment_vim'
 Plug 'bronson/vim-trailing-whitespace'
 Plug 'Yggdroot/indentLine'
 Plug 'tpope/vim-repeat'
+Plug 'editorconfig/editorconfig-vim'
 
 " ---file management
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
@@ -242,7 +243,6 @@ let g:pymode_lint_sort = ['E', 'W', 'C', 'R', 'I', 'F']
 let g:pymode_lint_ignore = ["F0002"]
 
 " ---black
-
 autocmd FileType python setlocal completeopt-=preview
 
 " ---c.vim
