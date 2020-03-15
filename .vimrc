@@ -52,7 +52,7 @@ Plug 'sheerun/vim-polyglot'
 " python
 Plug 'python-mode/python-mode', {'for': ['python'], 'branch': 'develop'}
 Plug 'mitsuhiko/vim-python-combined', {'for': ['python']}
-Plug 'psf/black', {'for': ['python']}
+Plug 'psf/black', {'for': ['python'], 'commit': 'ce14fa8b497bae2b50ec48b3bd7022573a59cdb1'}
 Plug 'fisadev/vim-isort', {'for': ['python']}
 Plug 'Glench/Vim-Jinja2-Syntax', {'for': ['*.html', '*.htm', '*.j2', '*.jinja']}
 Plug 'tshirtman/vim-cython', {'for': ['pyx']}
@@ -228,7 +228,7 @@ let g:ale_linters = {
 \   'python': ['flake8'],
 \}
 let g:ale_lint_on_text_changed = 'never'
-let g:ale_python_flake8_options = "--ignore=W503,E501 --max-line-length=88"
+let g:ale_python_flake8_options = "--ignore=W503,E501,F632,E203 --max-line-length=88"
 let g:ale_python_mypy_options = "--ignore-missing-imports"
 let g:ale_python_auto_pipenv = 1
 let g:ale_yaml_yamllint_options = "-d relaxed"
