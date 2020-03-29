@@ -40,6 +40,9 @@ endif
 " ----snippets
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 
+" ----test
+Plug 'janko/vim-test'
+
 " ---git
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
@@ -157,6 +160,14 @@ nmap <F10> :TagbarToggle<CR>
 " ----comment lines
 map ` :TComment<CR>
 vmap ` :TComment<CR>gv
+
+" ----vim-test
+" these "Ctrl mappings" work well when Caps Lock is mapped to Ctrl
+nmap <silent> t<C-n> :TestNearest<CR>
+nmap <silent> t<C-f> :TestFile<CR>
+nmap <silent> t<C-s> :TestSuite<CR>
+nmap <silent> t<C-l> :TestLast<CR>
+nmap <silent> t<C-g> :TestVisit<CR>
 
 " ----other bindings
 nmap <C-S-F> :Ag<CR>
