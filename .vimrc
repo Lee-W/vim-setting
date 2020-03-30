@@ -157,7 +157,7 @@ nmap <F8> :ALEToggle<CR>
 " ----toogle tagbar
 nmap <F10> :TagbarToggle<CR>
 
-" ----comment lines
+" ----tcomment
 map ` :TComment<CR>
 vmap ` :TComment<CR>gv
 
@@ -168,6 +168,10 @@ nmap <silent> t<C-f> :TestFile<CR>
 nmap <silent> t<C-s> :TestSuite<CR>
 nmap <silent> t<C-l> :TestLast<CR>
 nmap <silent> t<C-g> :TestVisit<CR>
+
+" ---ale
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
 " ----other bindings
 nmap <C-S-F> :Ag<CR>
