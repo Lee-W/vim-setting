@@ -254,6 +254,15 @@ let g:pymode_options_max_line_length = 88
 " --------black
 autocmd FileType python setlocal completeopt-=preview
 
+" --------vim-isort
+let g:vim_isort_config_overrides = {
+    \ "multi_line_output": 3,
+    \ "include_trailing_comma": "true",
+    \ "force_grid_wrap": 0,
+    \ "use_parentheses": "true",
+    \ "line_length": 88,
+\ }
+
 " --------c.vim
 filetype plugin on
 let g:C_InsertFileHeader = 'no'
