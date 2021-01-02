@@ -8,8 +8,8 @@ call plug#begin('~/.vim/plugged')
 " Plugin Installation
 
 " ----utility
-Plug 'Lokaltog/vim-easymotion'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'easymotion/vim-easymotion'
+Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
 Plug 'junegunn/fzf.vim'
 Plug 'vim-scripts/vimspell', {'for': ['txt', 'md', 'tex']}
 Plug 'majutsushi/tagbar'
@@ -23,13 +23,14 @@ Plug 'luochen1990/rainbow'
 Plug 'Raimondi/delimitMate'
 Plug 'tpope/vim-surround'
 Plug 'Yggdroot/indentLine'
+Plug 'terryma/vim-expand-region'
 
 " ----file management
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
 
 " ----autocomplete
 if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
   Plug 'zchee/deoplete-jedi'
   let g:deoplete#enable_at_startup = 1
 else
@@ -41,7 +42,7 @@ endif
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 
 " ----test
-Plug 'janko/vim-test'
+Plug 'vim-test/vim-test'
 
 " ---git
 Plug 'airblade/vim-gitgutter'
@@ -81,14 +82,8 @@ Plug 'plasticboy/vim-markdown', {'for': ['markdown']}
 " ----theme
 Plug 'morhetz/gruvbox'
 Plug 'ryanoasis/vim-devicons'
-" Plug 'fugalh/desert.vim'
-" Plug 'jnurmine/Zenburn'
 
 " ----plugin not installed
-" Plug 'scrooloose/syntastic'
-" Plug 'vim-scripts/cscope.vim'
-" Plug 'michaeljsmith/vim-indent-object'
-" Plug 'terryma/vim-multiple-cursors'
 " Plug 'chusiang/vim-sdcv'
 " Plug 'lepture/vim-jinja', {'for': ['html', '*.j2', '*.jinja']}
 
@@ -97,26 +92,26 @@ call plug#end()
 
 " General setting
 syntax on					" syntax highlight
-set nu                      " 顯示行號
-set cursorline              " 顯示目前的游標位置
-set bg=dark                 " 顯示不同的底色色調
-set ruler                   " 顯示最後一行的狀態
-set hlsearch                " 設定高亮度顯示搜尋結果
-set incsearch               " 搜尋時立即跳到符合的pattern
-set confirm                 " 操作過程有衝突時，以明確的文字來詢問
-set history=30              " 保留 30 個使用過的指令
+set nu                      " show line number
+set cursorline              " show the location of cursor
+set background=dark
+set ruler
+set hlsearch                " highlight serach reslt
+set incsearch               " jump to the matching string when typing
+set confirm
+set history=30              " keep the latest 30 used commands
 set t_Co=256                " Explicitly tell Vim that the terminal supports 256 colors
-set laststatus=2            " Always show the statusline
+set laststatus=2            " always show the statusline
 
 set autoindent
 set cindent
 set smartindent
-set shiftwidth=4			" 設定縮排寬度 = 4
-set backspace=2				" 可隨時用倒退鍵刪除
-set tabstop=4               " 設置Tab寬度
-set softtabstop=4           " 設置按退格鍵時可以一次刪除4個空格
-set smarttab                " 根據檔案中其他地方的空格來判斷一個tab是多少個空格
-set expandtab               " 將Tab鍵自動轉換成空格,真正需要Tab鍵時使用[Ctrl + V + Tab]
+set shiftwidth=4
+set backspace=2
+set tabstop=4
+set softtabstop=4
+set smarttab
+set expandtab               " covert tab to space, you can use [Ctrl + V + Tab] if tab is needed
 
 " ----Encoding
 set encoding=utf-8
@@ -229,7 +224,7 @@ let g:ale_linters = {
 let g:ale_lint_on_enter = 1
 let g:ale_lint_on_text_changed = "never"
 let g:ale_linters_explicit = 1
-let g:ale_python_bandit_options = "-iii -lll"
+let g:ale_python_bandit_options = "-iii -lll -s=B322"
 let g:ale_python_flake8_options = "--ignore=W503,E501,F632,E203 --max-line-length=88"
 let g:ale_python_mypy_options = "--ignore-missing-imports"
 let g:ale_python_auto_pipenv = 1
@@ -256,12 +251,9 @@ autocmd FileType python setlocal completeopt-=preview
 
 " --------vim-isort
 let g:vim_isort_config_overrides = {
-    \ "multi_line_output": 3,
-    \ "include_trailing_comma": "true",
-    \ "force_grid_wrap": 0,
-    \ "use_parentheses": "true",
-    \ "line_length": 88,
+    \ "profile": "black",
 \ }
+let g:vim_isort_python_version = 'python3'
 
 " --------c.vim
 filetype plugin on
@@ -308,7 +300,7 @@ if &term =~ "xterm.*"
     cmap <Esc>[201~ <nop>
 endif
 
-" ----回到上次編輯的地方
+" ----back to the the last editing location
 if has("autocmd")
     autocmd BufRead *.txt set tw=78
     autocmd BufReadPost *
@@ -318,4 +310,4 @@ if has("autocmd")
 endif
 
 " ----git commit max length
-autocmd Filetype gitcommit setlocal spell textwidth=80
+autocmd Filetype gitcommit setlocal spell textwidth=88
