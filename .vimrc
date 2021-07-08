@@ -24,6 +24,8 @@ Plug 'Raimondi/delimitMate'
 Plug 'tpope/vim-surround'
 Plug 'Yggdroot/indentLine'
 Plug 'terryma/vim-expand-region'
+Plug 'machakann/vim-highlightedyank'
+Plug 'tmhedberg/SimpylFold'
 
 " ----file management
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
@@ -56,7 +58,7 @@ Plug 'sheerun/vim-polyglot'
 " --------python
 Plug 'python-mode/python-mode', {'for': ['python'], 'branch': 'develop'}
 Plug 'mitsuhiko/vim-python-combined', {'for': ['python']}
-Plug 'psf/black', {'for': ['python'], 'commit': 'ce14fa8b497bae2b50ec48b3bd7022573a59cdb1'}
+Plug 'psf/black', {'for': ['python']}
 Plug 'fisadev/vim-isort', {'for': ['python']}
 Plug 'Glench/Vim-Jinja2-Syntax', {'for': ['html', '*.j2', '*.jinja']}
 Plug 'tshirtman/vim-cython', {'for': ['*.pyx']}
@@ -78,6 +80,8 @@ Plug 'cespare/vim-toml', {'for': ['*.toml']}
 " --------markdown
 Plug 'godlygeek/tabular', {'for': ['markdown']}
 Plug 'plasticboy/vim-markdown', {'for': ['markdown']}
+" --------dvc
+autocmd! BufNewFile,BufRead Dvcfile,*.dvc,dvc.lock setfiletype yaml
 
 " ----theme
 Plug 'morhetz/gruvbox'
@@ -128,6 +132,8 @@ autocmd FileType make setlocal noexpandtab
 autocmd Filetype html,javascript setlocal ts=2 sts=2 sw=2
 autocmd BufNewFile,BufRead html,*.hbs,*.handlebars setlocal filetype=html.jinja ts=2 sts=2 sw=2
 autocmd FileType python setlocal omnifunc=python3complete#Complete
+autocmd Filetype gitcommit setlocal spell textwidth=88
+" autocmd FileType python set foldmethod=indent
 
 " ----split navigations
 nnoremap <C-J> <C-W><C-J>
@@ -169,7 +175,7 @@ nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
 " ----other bindings
-nmap <C-S-F> :Ag<CR>
+nmap <C-F> :Rg<CR>
 inoremap jj <esc>
 
 " plug-in setting
@@ -242,7 +248,7 @@ let g:pymode_indent = 1
 let g:pymode_motion = 1
 let g:pymode_rope = 0
 let g:pymode_lint = 0
-let g:pymode_folding = 1
+let g:pymode_folding = 0
 let g:pymode_options_max_line_length = 88
 " let g:pymode_lint_sort = ['E', 'W', 'C', 'R', 'I', 'F']
 
@@ -282,7 +288,6 @@ let g:vim_markdown_toc_autofit = 1
 
 " --------theme
 colorscheme gruvbox
-" colorscheme desert
 
 " Other Configuration
 " ----set paste
@@ -308,6 +313,3 @@ if has("autocmd")
                 \   exe "normal g'\"" |
                 \ endif
 endif
-
-" ----git commit max length
-autocmd Filetype gitcommit setlocal spell textwidth=88
