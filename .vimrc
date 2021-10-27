@@ -5,40 +5,28 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
-" Plugin Installation
+" Plugin Installation (Common for vim and neovim)
 
 " ----utility
-Plug 'easymotion/vim-easymotion'
-Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
-Plug 'junegunn/fzf.vim'
-Plug 'vim-scripts/vimspell', {'for': ['txt', 'md', 'tex']}
+Plug 'editorconfig/editorconfig-vim'
 Plug 'majutsushi/tagbar'
 Plug 'fweep/vim-tabber'
 Plug 'liangfeng/TaskList.vim'
+Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
+Plug 'junegunn/fzf.vim'
+Plug 'vim-scripts/vimspell', {'for': ['txt', 'md', 'tex']}
 Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-repeat'
-Plug 'editorconfig/editorconfig-vim'
-Plug 'vim-airline/vim-airline'
 Plug 'luochen1990/rainbow'
 Plug 'Raimondi/delimitMate'
 Plug 'tpope/vim-surround'
-Plug 'Yggdroot/indentLine'
 Plug 'terryma/vim-expand-region'
 Plug 'machakann/vim-highlightedyank'
-Plug 'tmhedberg/SimpylFold'
+Plug 'vim-scripts/dbext.vim'
+Plug 'tmhedberg/SimpylFold', {'for': ['python']}
 
 " ----file management
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
-
-" ----autocomplete
-if has('nvim')
-  Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
-  Plug 'zchee/deoplete-jedi'
-  let g:deoplete#enable_at_startup = 1
-else
-  Plug 'vim-scripts/L9'
-  Plug 'othree/vim-autocomplpop'
-endif
 
 " ----snippets
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
@@ -80,6 +68,8 @@ Plug 'cespare/vim-toml', {'for': ['*.toml']}
 " --------markdown
 Plug 'godlygeek/tabular', {'for': ['markdown']}
 Plug 'plasticboy/vim-markdown', {'for': ['markdown']}
+" ------rust
+Plug 'rust-lang/rust.vim', {'for': ['rust']}
 " --------dvc
 autocmd! BufNewFile,BufRead Dvcfile,*.dvc,dvc.lock setfiletype yaml
 
@@ -91,10 +81,46 @@ Plug 'ryanoasis/vim-devicons'
 " Plug 'chusiang/vim-sdcv'
 " Plug 'lepture/vim-jinja', {'for': ['html', '*.j2', '*.jinja']}
 
+" Plugin Installation (Different between vim and neovim)
+if has('nvim')
+    " ----utility
+    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
+    Plug 'nvim-lua/plenary.nvim'
+    Plug 'nvim-telescope/telescope.nvim'
+    Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+    Plug 'glepnir/dashboard-nvim'
+    Plug 'lukas-reineke/indent-blankline.nvim'
+    Plug 'kevinhwang91/nvim-hlslens'
+    Plug 'nvim-lualine/lualine.nvim'
+    Plug 'yamatsum/nvim-cursorline'
+    Plug 'gelguy/wilder.nvim', { 'do': ':UpdateRemotePlugins'}
+    Plug 'folke/which-key.nvim'
+    Plug 'kyazdani42/nvim-web-devicons'
+    Plug 'phaazon/hop.nvim'
+    " Plug 'henriquehbr/nvim-startup.lua'
+
+    " ----git
+    Plug 'sindrets/diffview.nvim'
+
+    " ----autocomplete
+    Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
+    Plug 'zchee/deoplete-jedi'
+else
+    " ----utility
+    Plug 'vim-airline/vim-airline'
+    Plug 'easymotion/vim-easymotion'
+    Plug 'Yggdroot/indentLine'
+
+    " ----autocomplete
+    Plug 'vim-scripts/L9'
+    Plug 'othree/vim-autocomplpop'
+endif
+
 call plug#end()
 
 
 " General setting
+language en_US
 syntax on					" syntax highlight
 set nu                      " show line number
 set cursorline              " show the location of cursor
@@ -133,7 +159,6 @@ autocmd Filetype html,javascript setlocal ts=2 sts=2 sw=2
 autocmd BufNewFile,BufRead html,*.hbs,*.handlebars setlocal filetype=html.jinja ts=2 sts=2 sw=2
 autocmd FileType python setlocal omnifunc=python3complete#Complete
 autocmd Filetype gitcommit setlocal spell textwidth=88
-" autocmd FileType python set foldmethod=indent
 
 " ----split navigations
 nnoremap <C-J> <C-W><C-J>
@@ -175,20 +200,15 @@ nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
 " ----other bindings
-nmap <C-F> :Rg<CR>
 inoremap jj <esc>
 
-" plug-in setting
+" common plug-in setting
 
 " ----utility
-
-" --------easymotion
-let g:EasyMotion_leader_key = 'f'
-
 " --------fzf
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
 
-nmap <C-P> :FZF<CR>
+nmap <C-F> :Rg<CR>
 nmap ; :Buffers<CR>
 
 let g:fzf_buffers_jump = 1
@@ -202,13 +222,10 @@ set tabline=%!tabber#TabLine()
 " --------TaskList
 let g:tlTokenList = ["FIXME", "TODO", "XXX"]
 
-" --------airline
-let g:airline_powerline_fonts = 1
-
 " ----file management
 " --------nerdtree
-let NERDTreeIgnore=['\.pyc$', '\~$']  "ignore files in NERDTree
-let NERDTreeShowHidden=1
+let NERDTreeIgnore = ['\.pyc$', '\~$']  "ignore files in NERDTree
+let NERDTreeShowHidden = 1
 
 " ----snippets
 " --------ultisnips
@@ -224,9 +241,7 @@ highlight clear SignColumn " For the same appearance as your line number column 
 
 " ----syntax highlight and detection
 " --------ale
-let g:ale_linters = {
-\   "python": ["flake8", "mypy", "bandit"],
-\}
+let g:ale_linters = {"python": ["flake8", "mypy", "bandit"]}
 let g:ale_lint_on_enter = 1
 let g:ale_lint_on_text_changed = "never"
 let g:ale_linters_explicit = 1
@@ -246,7 +261,7 @@ let g:ale_list_window_size = 6
 let g:pymode_python = "python3"
 let g:pymode_indent = 1
 let g:pymode_motion = 1
-let g:pymode_rope = 0
+let g:pymode_rope = 1
 let g:pymode_lint = 0
 let g:pymode_folding = 0
 let g:pymode_options_max_line_length = 88
@@ -256,9 +271,7 @@ let g:pymode_options_max_line_length = 88
 autocmd FileType python setlocal completeopt-=preview
 
 " --------vim-isort
-let g:vim_isort_config_overrides = {
-    \ "profile": "black",
-\ }
+let g:vim_isort_config_overrides = {"profile": "black"}
 let g:vim_isort_python_version = 'python3'
 
 " --------c.vim
@@ -312,4 +325,81 @@ if has("autocmd")
                 \ if line("'\"") > 0 && line ("'\"") <= line("$") |
                 \   exe "normal g'\"" |
                 \ endif
+endif
+
+" neovim/vim plug-in setting
+if has('nvim')
+    " ----autocomplete
+    let g:deoplete#enable_at_startup = 1
+
+    " ----utility
+    " --------dashboard-nvim
+    let g:dashboard_default_executive = 'telescope'
+    let g:indentLine_fileTypeExclude = ['dashboard']
+
+    " --------Telescope
+    nnoremap <C-P> <cmd>Telescope find_files<cr>
+
+    " --------wilder
+    call wilder#setup({'modes': [':', '/', '?']})
+
+    call wilder#set_option('pipeline', [
+          \   wilder#branch(
+          \     wilder#cmdline_pipeline({
+          \       'fuzzy': 1,
+          \       'set_pcre2_pattern': has('nvim'),
+          \     }),
+          \     wilder#python_search_pipeline({
+          \       'pattern': 'fuzzy',
+          \     }),
+          \   ),
+          \ ])
+
+    let s:highlighters = [
+            \ wilder#pcre2_highlighter(),
+            \ wilder#basic_highlighter(),
+            \ ]
+
+    call wilder#set_option('renderer', wilder#renderer_mux({
+          \ ':': wilder#popupmenu_renderer({
+          \   'highlighter': s:highlighters,
+          \ }),
+          \ '/': wilder#wildmenu_renderer({
+          \   'highlighter': s:highlighters,
+          \ }),
+          \ }))
+
+lua << END
+--------lualine
+require('lualine').setup {
+    options = {theme = 'material'},
+    extensions = {'nerdtree'}
+}
+
+--------indent blankline
+vim.opt.listchars:append("space:⋅")
+vim.opt.listchars:append("eol:↴")
+
+require("indent_blankline").setup {
+    show_end_of_line = true,
+    show_current_context = true,
+}
+
+---------hop
+vim.api.nvim_set_keymap('n', 'fs', "<cmd>lua require'hop'.hint_char1()<cr>", {})
+require('hop').setup {
+    create_hl_autocmd = true
+}
+END
+
+else
+    " ----utility
+    " --------airline
+    let g:airline_powerline_fonts = 1
+
+    " --------easymotion
+    let g:EasyMotion_leader_key = 'f'
+
+    " --------fzf
+    nmap <C-P> :FZF<CR>
 endif
