@@ -18,7 +18,6 @@ Plug 'vim-scripts/vimspell', {'for': ['txt', 'md', 'tex']}
 Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-repeat'
 Plug 'luochen1990/rainbow'
-Plug 'Raimondi/delimitMate'
 Plug 'tpope/vim-surround'
 Plug 'terryma/vim-expand-region'
 Plug 'machakann/vim-highlightedyank'
@@ -33,6 +32,7 @@ Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 
 " ----test
 Plug 'vim-test/vim-test'
+Plug "rcarriga/vim-ultest", { "do": ":UpdateRemotePlugins" }
 
 " ---git
 Plug 'airblade/vim-gitgutter'
@@ -75,7 +75,6 @@ autocmd! BufNewFile,BufRead Dvcfile,*.dvc,dvc.lock setfiletype yaml
 
 " ----theme
 Plug 'morhetz/gruvbox'
-Plug 'ryanoasis/vim-devicons'
 
 " ----plugin not installed
 " Plug 'chusiang/vim-sdcv'
@@ -98,6 +97,8 @@ if has('nvim')
     Plug 'kyazdani42/nvim-web-devicons'
     Plug 'phaazon/hop.nvim'
     " Plug 'henriquehbr/nvim-startup.lua'
+    Plug 'windwp/nvim-spectre'
+    Plug 'windwp/nvim-autopairs'
 
     " ----git
     Plug 'sindrets/diffview.nvim'
@@ -110,10 +111,19 @@ else
     Plug 'vim-airline/vim-airline'
     Plug 'easymotion/vim-easymotion'
     Plug 'Yggdroot/indentLine'
+Plug 'Raimondi/delimitMate'
 
     " ----autocomplete
     Plug 'vim-scripts/L9'
     Plug 'othree/vim-autocomplpop'
+
+    " ----test
+    " for vim-ultest
+    Plug 'roxma/nvim-yarp'
+    Plug 'roxma/vim-hug-neovim-rpc'
+
+    " ----theme
+    Plug 'ryanoasis/vim-devicons'
 endif
 
 call plug#end()
@@ -242,9 +252,10 @@ highlight clear SignColumn " For the same appearance as your line number column 
 " ----syntax highlight and detection
 " --------ale
 let g:ale_linters = {"python": ["flake8", "mypy", "bandit"]}
-let g:ale_lint_on_enter = 1
+let g:ale_lint_on_enter = 0
 let g:ale_lint_on_text_changed = "never"
 let g:ale_linters_explicit = 1
+let g:ale_python_isort_options = "--profile black"
 let g:ale_python_bandit_options = "-iii -lll -s=B322"
 let g:ale_python_flake8_options = "--ignore=W503,E501,F632,E203 --max-line-length=88"
 let g:ale_python_mypy_options = "--ignore-missing-imports"
@@ -252,6 +263,7 @@ let g:ale_python_auto_pipenv = 1
 let g:ale_yaml_yamllint_options = "-d relaxed"
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'python': ['black', 'isort']
 \}
 let g:ale_fix_on_save = 1
 let g:ale_open_list = 1
@@ -339,6 +351,16 @@ if has('nvim')
 
     " --------Telescope
     nnoremap <C-P> <cmd>Telescope find_files<cr>
+    autocmd FileType TelescopePrompt call deoplete#custom#buffer_option('auto_comple', v:false)
+
+    " --------nvim-spectre
+    nnoremap <leader>S :lua require('spectre').open()<CR>
+
+    "search current word
+    nnoremap <leader>sw :lua require('spectre').open_visual({select_word=true})<CR>
+    vnoremap <leader>s :lua require('spectre').open_visual()<CR>
+    "  search in current file
+    nnoremap <leader>sp viw:lua require('spectre').open_file_search()<cr>
 
     " --------wilder
     call wilder#setup({'modes': [':', '/', '?']})
@@ -370,6 +392,9 @@ if has('nvim')
           \ }))
 
 lua << END
+--------telescope
+require('telescope').load_extension('fzf')
+
 --------lualine
 require('lualine').setup {
     options = {theme = 'material'},
@@ -390,6 +415,9 @@ vim.api.nvim_set_keymap('n', 'fs', "<cmd>lua require'hop'.hint_char1()<cr>", {})
 require('hop').setup {
     create_hl_autocmd = true
 }
+
+--------nvim-autopairs
+require('nvim-autopairs').setup{}
 END
 
 else
