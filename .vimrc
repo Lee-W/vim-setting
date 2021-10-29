@@ -10,7 +10,6 @@ call plug#begin('~/.vim/plugged')
 " ----utility
 Plug 'editorconfig/editorconfig-vim'
 Plug 'majutsushi/tagbar'
-Plug 'fweep/vim-tabber'
 Plug 'liangfeng/TaskList.vim'
 Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
 Plug 'junegunn/fzf.vim'
@@ -24,15 +23,12 @@ Plug 'machakann/vim-highlightedyank'
 Plug 'vim-scripts/dbext.vim'
 Plug 'tmhedberg/SimpylFold', {'for': ['python']}
 
-" ----file management
-Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
-
 " ----snippets
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 
 " ----test
 Plug 'vim-test/vim-test'
-Plug "rcarriga/vim-ultest", { "do": ":UpdateRemotePlugins" }
+Plug 'rcarriga/vim-ultest', { 'do': ':UpdateRemotePlugins' }
 
 " ---git
 Plug 'airblade/vim-gitgutter'
@@ -47,7 +43,6 @@ Plug 'sheerun/vim-polyglot'
 Plug 'python-mode/python-mode', {'for': ['python'], 'branch': 'develop'}
 Plug 'mitsuhiko/vim-python-combined', {'for': ['python']}
 Plug 'psf/black', {'for': ['python']}
-Plug 'fisadev/vim-isort', {'for': ['python']}
 Plug 'Glench/Vim-Jinja2-Syntax', {'for': ['html', '*.j2', '*.jinja']}
 Plug 'tshirtman/vim-cython', {'for': ['*.pyx']}
 " --------C/C++
@@ -73,9 +68,6 @@ Plug 'rust-lang/rust.vim', {'for': ['rust']}
 " --------dvc
 autocmd! BufNewFile,BufRead Dvcfile,*.dvc,dvc.lock setfiletype yaml
 
-" ----theme
-Plug 'morhetz/gruvbox'
-
 " ----plugin not installed
 " Plug 'chusiang/vim-sdcv'
 " Plug 'lepture/vim-jinja', {'for': ['html', '*.j2', '*.jinja']}
@@ -96,9 +88,13 @@ if has('nvim')
     Plug 'folke/which-key.nvim'
     Plug 'kyazdani42/nvim-web-devicons'
     Plug 'phaazon/hop.nvim'
-    " Plug 'henriquehbr/nvim-startup.lua'
     Plug 'windwp/nvim-spectre'
     Plug 'windwp/nvim-autopairs'
+    Plug 'romgrk/barbar.nvim'
+    " Plug 'henriquehbr/nvim-startup.lua'
+
+    " ----file management
+    Plug 'kyazdani42/nvim-tree.lua'
 
     " ----git
     Plug 'sindrets/diffview.nvim'
@@ -106,12 +102,19 @@ if has('nvim')
     " ----autocomplete
     Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
     Plug 'zchee/deoplete-jedi'
+
+    " ----theme
+    Plug 'bluz71/vim-nightfly-guicolors'
 else
     " ----utility
     Plug 'vim-airline/vim-airline'
     Plug 'easymotion/vim-easymotion'
     Plug 'Yggdroot/indentLine'
-Plug 'Raimondi/delimitMate'
+    Plug 'Raimondi/delimitMate'
+    Plug 'fweep/vim-tabber'
+
+    " ----file management
+    Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
 
     " ----autocomplete
     Plug 'vim-scripts/L9'
@@ -122,8 +125,13 @@ Plug 'Raimondi/delimitMate'
     Plug 'roxma/nvim-yarp'
     Plug 'roxma/vim-hug-neovim-rpc'
 
+    " ----python
+    Plug 'fisadev/vim-isort', {'for': ['python']}
+
     " ----theme
+    Plug 'morhetz/gruvbox'
     Plug 'ryanoasis/vim-devicons'
+
 endif
 
 call plug#end()
@@ -178,8 +186,6 @@ nnoremap <C-H> <C-W><C-H>
 nnoremap <C-H> <C-W><C-H>
 
 " key binding
-" ----toggle NERDTree
-nmap <F2> :NERDTreeToggle<CR>
 
 " ----toggl TaskList
 nmap <F3> :ToggleTaskList<CR>
@@ -196,14 +202,6 @@ nmap <F10> :TagbarToggle<CR>
 " ----tcomment
 map ` :TComment<CR>
 vmap ` :TComment<CR>gv
-
-" ----vim-test
-" these "Ctrl mappings" work well when Caps Lock is mapped to Ctrl
-nmap <silent> t<C-n> :TestNearest<CR>
-nmap <silent> t<C-f> :TestFile<CR>
-nmap <silent> t<C-s> :TestSuite<CR>
-nmap <silent> t<C-l> :TestLast<CR>
-nmap <silent> t<C-g> :TestVisit<CR>
 
 " ---ale
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
@@ -231,11 +229,6 @@ set tabline=%!tabber#TabLine()
 
 " --------TaskList
 let g:tlTokenList = ["FIXME", "TODO", "XXX"]
-
-" ----file management
-" --------nerdtree
-let NERDTreeIgnore = ['\.pyc$', '\~$']  "ignore files in NERDTree
-let NERDTreeShowHidden = 1
 
 " ----snippets
 " --------ultisnips
@@ -311,9 +304,6 @@ let g:vim_markdown_conceal = 0
 let g:vim_markdown_conceal_code_blocks = 0
 let g:vim_markdown_toc_autofit = 1
 
-" --------theme
-colorscheme gruvbox
-
 " Other Configuration
 " ----set paste
 if &term =~ "xterm.*"
@@ -351,7 +341,8 @@ if has('nvim')
 
     " --------Telescope
     nnoremap <C-P> <cmd>Telescope find_files<cr>
-    autocmd FileType TelescopePrompt call deoplete#custom#buffer_option('auto_comple', v:false)
+    nnoremap <C-B> <cmd>Telescope grep_string<cr>
+    autocmd FileType TelescopePrompt call deoplete#custom#buffer_option('auto_complete', v:false)
 
     " --------nvim-spectre
     nnoremap <leader>S :lua require('spectre').open()<CR>
@@ -391,14 +382,37 @@ if has('nvim')
           \ }),
           \ }))
 
+    " --------vim-ul-test
+    nmap tsj <Plug>(ultest-summary-jump)
+    nmap <silent> t<C-n> :UltestNearest<CR>
+    nmap <silent> t<C-s> :UltestSummary<CR>
+    nmap <silent> t<C-l> :TestLast<CR>
+
+    " --------nvim-tree
+    nmap <F2> :NvimTreeToggle<CR>
+
+    let g:nvim_tree_ignore = [
+        \ ".git",
+        \ ".mypy_cache",
+        \ ".pytest_cache",
+        \ ".ropeproject",
+        \ "__pycache__",
+        \ ".ipynb_checkpoints",
+        \ ".hypothesis"
+        \ ]
+    let g:nvim_tree_indent_markers = 1
+    let g:nvim_tree_highlight_opened_files = 1
+    let g:nvim_tree_git_hl = 1
+    let g:nvim_tree_add_trailing = 1
+
 lua << END
 --------telescope
 require('telescope').load_extension('fzf')
 
 --------lualine
 require('lualine').setup {
-    options = {theme = 'material'},
-    extensions = {'nerdtree'}
+    options = {theme = 'nightfly'},
+    extensions = {'nvim-tree', 'fugitive'}
 }
 
 --------indent blankline
@@ -418,7 +432,14 @@ require('hop').setup {
 
 --------nvim-autopairs
 require('nvim-autopairs').setup{}
+
+--------nvim-tree
+require('nvim-tree').setup{}
 END
+
+    " ---------theme
+    set termguicolors
+    colorscheme nightfly
 
 else
     " ----utility
@@ -430,4 +451,21 @@ else
 
     " --------fzf
     nmap <C-P> :FZF<CR>
+
+    " ----NERDTree
+    nmap <F2> :NERDTreeToggle<CR>
+
+    let NERDTreeIgnore = ['\.pyc$', '\~$']  "ignore files in NERDTree
+    let NERDTreeShowHidden = 1
+
+    " ----vim-test
+    " these "Ctrl mappings" work well when Caps Lock is mapped to Ctrl
+    nmap <silent> t<C-n> :TestNearest<CR>
+    nmap <silent> t<C-f> :TestFile<CR>
+    nmap <silent> t<C-s> :TestSuite<CR>
+    nmap <silent> t<C-l> :TestLast<CR>
+    nmap <silent> t<C-g> :TestVisit<CR>
+
+    " --------theme
+    colorscheme gruvbox
 endif
