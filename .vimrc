@@ -91,6 +91,7 @@ if has('nvim')
     Plug 'windwp/nvim-spectre'
     Plug 'windwp/nvim-autopairs'
     Plug 'romgrk/barbar.nvim'
+    Plug 'AckslD/nvim-neoclip.lua'
     " Plug 'henriquehbr/nvim-startup.lua'
 
     " ----file management
@@ -104,7 +105,7 @@ if has('nvim')
     Plug 'zchee/deoplete-jedi'
 
     " ----theme
-    Plug 'bluz71/vim-nightfly-guicolors'
+    Plug 'EdenEast/nightfox.nvim'
 else
     " ----utility
     Plug 'vim-airline/vim-airline'
@@ -160,6 +161,7 @@ set tabstop=4
 set softtabstop=4
 set smarttab
 set expandtab               " covert tab to space, you can use [Ctrl + V + Tab] if tab is needed
+set hidden
 
 " ----Encoding
 set encoding=utf-8
@@ -184,6 +186,10 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 nnoremap <C-H> <C-W><C-H>
+
+" ----jump between buffers (replace tab)
+map gt :bn<cr>
+map gT :bp<cr>
 
 " key binding
 
@@ -391,15 +397,6 @@ if has('nvim')
     " --------nvim-tree
     nmap <F2> :NvimTreeToggle<CR>
 
-    let g:nvim_tree_ignore = [
-        \ ".git",
-        \ ".mypy_cache",
-        \ ".pytest_cache",
-        \ ".ropeproject",
-        \ "__pycache__",
-        \ ".ipynb_checkpoints",
-        \ ".hypothesis"
-        \ ]
     let g:nvim_tree_indent_markers = 1
     let g:nvim_tree_highlight_opened_files = 1
     let g:nvim_tree_git_hl = 1
@@ -411,7 +408,7 @@ require('telescope').load_extension('fzf')
 
 --------lualine
 require('lualine').setup {
-    options = {theme = 'nightfly'},
+    options = {theme = 'nightfox'},
     extensions = {'nvim-tree', 'fugitive'}
 }
 
@@ -434,12 +431,24 @@ require('hop').setup {
 require('nvim-autopairs').setup{}
 
 --------nvim-tree
-require('nvim-tree').setup{}
+require('nvim-tree').setup{
+    filters = {
+        custom = {
+            ".git",
+            ".mypy_cache",
+            ".pytest_cache",
+            ".ropeproject",
+            "__pycache__",
+            ".ipynb_checkpoints",
+            ".hypothesis"
+        }
+    }
+}
 END
 
     " ---------theme
     set termguicolors
-    colorscheme nightfly
+    colorscheme Duskfox
 
 else
     " ----utility
